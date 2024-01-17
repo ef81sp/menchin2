@@ -7,6 +7,5 @@ import { RouterLink, RouterView } from 'vue-router'
     <RouterLink to="/">何待ち</RouterLink> |
     <RouterLink to="/nanikiru">何切る</RouterLink>
   </nav>
-
   <RouterView />
 </template>

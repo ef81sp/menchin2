@@ -8,11 +8,11 @@ import PrimeVue from 'primevue/config'
 import Menchin from '@/presets/menchin'
 
 const app = createApp(App)
+app.use(router)
 
 app.use(PrimeVue, {
   unstyled: true,
   pt: Menchin,
 })
 
-app.use(router)
 app.mount('#app')

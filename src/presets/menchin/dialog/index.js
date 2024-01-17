@@ -167,7 +167,7 @@ export default {
     footer: {
         class: [
             // Flexbox and Alignment
-            'flex items-center justify-end',
+            'flex items-center justify-center',
             'shrink-0',
             'text-right',
             'gap-2',
