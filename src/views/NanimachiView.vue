@@ -3,10 +3,7 @@ import Button from 'primevue/button'
 import Message from 'primevue/message'
 import VPai from '@/components/VPai.vue'
 import { handNanimachi, generateHandNanimachi } from '@/composables/generateHand'
-import {
-  showNanimachiExplanation,
-  showNanimachiOption,
-} from '@/composables/dialogController'
+import { showNanimachiExplanation, showNanimachiOption } from '@/composables/dialogController'
 import NanimachiOption from '@/components/NanimachiOptionDialog.vue'
 import NanimachiAnswerButton from '@/components/NanimachiAnswerButton.vue'
 import { clearAnswerNanimachi, judgeNanimachi } from '@/composables/gameController'

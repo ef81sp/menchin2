@@ -3,7 +3,7 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <nav class="text-sm text-center">
+  <nav class="text-center text-sm">
     <RouterLink to="/">何待ち</RouterLink> |
     <RouterLink to="/nanikiru">何切る</RouterLink>
   </nav>

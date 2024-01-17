@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { suit } from '@/composables/nanimachiOption'
 import SelectButton from 'primevue/selectbutton'
-import { computed, ref, watchEffect } from 'vue'
+import { computed } from 'vue'
 import VPai from './VPai.vue'
 import { answerNanimachi } from '@/composables/gameController'
 
@@ -26,12 +26,10 @@ const options = computed(() => {
     v-model="answerNanimachi"
     :options="options"
     multiple
-    class="*:max-w-[calc(100%/9)] *:md:w-[calc(120%/9)] *:px-1 *:py-2 *:md:px-2 *:md:py-3"
+    class="*:max-w-[calc(100%/9)] *:px-1 *:py-2 *:md:w-[calc(120%/9)] *:md:px-2 *:md:py-3"
   >
     <template #option="{ option }">
-      <VPai
-        :pai-str="option"
-      />
+      <VPai :pai-str="option" />
     </template>
   </SelectButton>
 </template>

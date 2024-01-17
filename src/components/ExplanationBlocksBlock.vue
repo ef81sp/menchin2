@@ -20,7 +20,7 @@ const blockToPaiStrList = (block: Janto | Mentsu | Tatsu): PaiStr[] => {
 </script>
 <template>
   <div class="flex gap-x-2 lg:gap-x-4">
-    <p class="text-sm min-w-fit flex items-center md:text-base lg:text-lg">{{ title }}</p>
+    <p class="flex min-w-fit items-center text-sm md:text-base lg:text-lg">{{ title }}</p>
     <div class="flex flex-wrap items-center gap-2 lg:gap-4">
       <div
         class="flex"
