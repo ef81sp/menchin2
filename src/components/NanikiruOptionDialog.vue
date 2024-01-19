@@ -51,37 +51,6 @@ defineEmits(['hide'])
       </div>
 
       <div class="flex flex-col gap-2 *:flex *:items-center *:justify-start *:gap-2">
-        <p class="font-bold">牌種</p>
-        <div>
-          <RadioButton
-            v-model="suit"
-            inputId="suit-m"
-            name="m"
-            value="m"
-          />
-          <label for="suit-m">マンズ</label>
-        </div>
-        <div>
-          <RadioButton
-            v-model="suit"
-            inputId="suit-p"
-            name="p"
-            value="p"
-          />
-          <label for="suit-p">ピンズ</label>
-        </div>
-        <div>
-          <RadioButton
-            v-model="suit"
-            inputId="suit-s"
-            name="s"
-            value="s"
-          />
-          <label for="suit-s">ソーズ</label>
-        </div>
-      </div>
-
-      <div class="flex flex-col gap-2 *:flex *:items-center *:justify-start *:gap-2">
         <p class="font-bold">牌の範囲</p>
         <div>
           <RadioButton
@@ -140,6 +109,37 @@ defineEmits(['hide'])
             :value="3"
           />
           <label for="waitNum-3">3〜<small>(多面)</small></label>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2 *:flex *:items-center *:justify-start *:gap-2">
+        <p class="font-bold">牌種</p>
+        <div>
+          <RadioButton
+            v-model="suit"
+            inputId="suit-m"
+            name="m"
+            value="m"
+          />
+          <label for="suit-m">マンズ</label>
+        </div>
+        <div>
+          <RadioButton
+            v-model="suit"
+            inputId="suit-p"
+            name="p"
+            value="p"
+          />
+          <label for="suit-p">ピンズ</label>
+        </div>
+        <div>
+          <RadioButton
+            v-model="suit"
+            inputId="suit-s"
+            name="s"
+            value="s"
+          />
+          <label for="suit-s">ソーズ</label>
         </div>
       </div>
     </div>
