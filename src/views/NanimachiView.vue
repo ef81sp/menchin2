@@ -35,6 +35,7 @@ const judge = () => {
         :pai-str="pai.toString()"
         v-for="(pai, i) in handNanimachi.普通"
         :key="i"
+        class="sm:w-10 md:w-12 lg:w-14"
       />
     </div>
     <div class="my-2 gap-2">

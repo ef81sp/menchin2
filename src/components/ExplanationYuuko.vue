@@ -41,7 +41,7 @@ const nShuNPai = computed(
       :pai-str="pai.toString()"
       v-for="(pai, i) in hand"
       :key="i"
-      class="w-4 md:w-7 lg:w-10"
+      class="w-5 sm:w-7 md:w-9 lg:w-11"
     />
   </div>
   <h6 class="mt-3 font-bold">有効牌</h6>
@@ -49,7 +49,7 @@ const nShuNPai = computed(
     <div
       v-for="({ 牌, remains }, i) in remaining有効牌num"
       :key="i"
-      class="w-4 md:w-7 lg:w-10"
+      class="w-4 sm:w-7 md:w-9 lg:w-11"
     >
       <VPai :pai-str="牌.toString()" />
       <p class="text-center">{{ remains }}</p>
