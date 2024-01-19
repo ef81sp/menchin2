@@ -30,11 +30,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Set up Node
-        uses: pnpm/action-setup@v2.2.2
+      - name: Install Node.js
+        uses: actions/setup-node@v3
         with:
-          version: 8.14.1
           node-version: 20
+
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        with:
+          version: 8
       - name: Install dependencies
         run: pnpm install
       - name: Build
