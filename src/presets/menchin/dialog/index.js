@@ -7,7 +7,7 @@ export default {
       'border-0',
 
       // Size
-      'max-h-[90vh]',
+      'max-h-[90svh]',
       'w-[75vw]',
       'md:w-[65vw]',
       'm-0',
