@@ -51,7 +51,7 @@ const removePai = (hand: 牌[], pai: 牌) => {
     :style="{ 'min-width': '18rem' }"
     :breakpoints="{ '640px': '100vw' }"
   >
-    <h4 class="my-4 md:text-2xl">5ブロック {{ statusText }}</h4>
+    <h4 class="my-4 md:text-2xl">{{ statusText }}</h4>
     <ExplanationYuuko
       v-for="(analysisResult, i) in minShantenAnalysisResultValues"
       :key="i"
