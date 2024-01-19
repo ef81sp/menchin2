@@ -108,4 +108,3 @@ watchEffect(() => {
     </div>
   </div>
 </template>
-@/composables/nanikiruAnswer

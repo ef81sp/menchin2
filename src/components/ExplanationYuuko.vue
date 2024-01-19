@@ -26,11 +26,11 @@ const nShuNPai = computed(
 <template>
   <Divider />
   <div class="flex flex-wrap items-center">
-    <h5 class="text-lg mt-3 font-bold">
+    <h5 class="mt-3 text-lg font-bold">
       打
       <VPai
         :pai-str="discarding.toString()"
-        class="w-5 md:w-8 lg:w-11 inline-block"
+        class="inline-block w-5 md:w-8 lg:w-11"
       />
       {{ nShuNPai }}
     </h5>
