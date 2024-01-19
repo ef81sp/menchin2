@@ -1,6 +1,4 @@
 <script setup lang="ts">
-// 画像: 麻雀王国 https://mj-king.net/sozai/
-
 import type { 牌 } from 'pairi'
 import { computed } from 'vue'
 

@@ -9,7 +9,7 @@ import ScrollPanel from 'primevue/scrollpanel'
       <h2 class="text-2xl">ヘルプ (このアプリについて)</h2>
     </template>
     <template #content>
-      <ScrollPanel class="h-[60svh] md:h-[70svh] w-full p-2">
+      <ScrollPanel class="h-[60svh] w-full p-2 md:h-[70svh]">
         <h3 class="mb-3 mt-7 text-xl font-extrabold">概要</h3>
         <p>自分のペースでチンイツを練習するためのツールです。</p>
         <p>無料でご使用いただけます。</p>
@@ -18,7 +18,10 @@ import ScrollPanel from 'primevue/scrollpanel'
         <h4 class="mb-2 mt-4 text-lg font-bold">ふたつのモード</h4>
         <ul class="mx-5 list-outside list-disc space-y-2">
           <li><span class="font-semibold">何待ち</span>: 待ち牌を当てます。</li>
-          <li><span class="font-semibold">何切る</span>: 1枚ツモった状態から、最も有効牌の多い打牌を当てます。</li>
+          <li>
+            <span class="font-semibold">何切る</span>:
+            1枚ツモった状態から、最も有効牌の多い打牌を当てます。
+          </li>
         </ul>
 
         <h4 class="mb-2 mt-4 text-lg font-bold">時間制限なし</h4>
@@ -55,6 +58,15 @@ import ScrollPanel from 'primevue/scrollpanel'
           ご自由に使ってください。許可は不要ですので、許可を得る目的での連絡はしないでください。
         </p>
         <p>リンクを貼っていただけると喜びます。</p>
+
+        <h3 class="mb-3 mt-7 text-xl font-extrabold">牌の画像</h3>
+        <a
+          href="https://mj-king.net/sozai/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          麻雀王国
+        </a>
 
         <h3 class="mb-3 mt-7 text-xl font-extrabold">作った人</h3>
         <p>
