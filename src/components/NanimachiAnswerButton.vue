@@ -3,7 +3,7 @@ import { suit } from '@/composables/nanimachiOption'
 import SelectButton from 'primevue/selectbutton'
 import { computed } from 'vue'
 import VPai from './VPai.vue'
-import { answerNanimachi } from '@/composables/gameController'
+import { answerNanimachi } from '@/composables/nanimachiAnswer'
 
 const optionsManzu = ['1m', '2m', '3m', '4m', '5m', '6m', '7m', '8m', '9m']
 const optionsPinzu = ['1p', '2p', '3p', '4p', '5p', '6p', '7p', '8p', '9p']
@@ -33,3 +33,4 @@ const options = computed(() => {
     </template>
   </SelectButton>
 </template>
+@/composables/option@/composables/nanimachiOption@/composables/nanimachiAnswer

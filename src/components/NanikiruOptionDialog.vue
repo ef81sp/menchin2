@@ -3,14 +3,14 @@ import Dialog from 'primevue/dialog'
 import RadioButton from 'primevue/radiobutton'
 import Button from 'primevue/button'
 
-import { visibleNanimachiOption } from '@/composables/dialogController'
-import { length, range, suit, waitNum } from '@/composables/nanimachiOption'
+import { visibleNanikiruOption } from '@/composables/dialogController'
+import { length, range, suit, waitNum } from '@/composables/nanikiruOption'
 
 defineEmits(['hide'])
 </script>
 <template>
   <Dialog
-    v-model:visible="visibleNanimachiOption"
+    v-model:visible="visibleNanikiruOption"
     modal
     header="設定"
     :dismissableMask="true"
@@ -145,7 +145,7 @@ defineEmits(['hide'])
     </div>
     <template #footer>
       <Button
-        @click="visibleNanimachiOption = false"
+        @click="visibleNanikiruOption = false"
         label="決定"
         class="w-16"
         size="small"
@@ -153,4 +153,3 @@ defineEmits(['hide'])
     </template>
   </Dialog>
 </template>
-@/composables/option@/composables/nanimachiOption

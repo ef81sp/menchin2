@@ -1,6 +1,6 @@
 import { ref, watchEffect } from 'vue'
 import type { Manzu, Pinzu, Sozu } from './PaiStr.type'
-import { handNanimachi } from './generateHand'
+import { handNanimachi } from './nanimachiGenerateHand'
 
 export const answerNanimachi = ref<Manzu[] | Pinzu[] | Sozu[]>([])
 watchEffect(() => {

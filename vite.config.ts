@@ -16,4 +16,7 @@ export default defineConfig({
       'vue'
     ]
   },
+  define: { 
+    'import.meta.vitest': 'undefined', 
+  }, 
 })

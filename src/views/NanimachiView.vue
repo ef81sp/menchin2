@@ -2,11 +2,11 @@
 import Button from 'primevue/button'
 import Message from 'primevue/message'
 import VPai from '@/components/VPai.vue'
-import { handNanimachi, generateHandNanimachi } from '@/composables/generateHand'
+import { handNanimachi, generateHandNanimachi } from '@/composables/nanimachiGenerateHand'
 import { showNanimachiExplanation, showNanimachiOption } from '@/composables/dialogController'
 import NanimachiOption from '@/components/NanimachiOptionDialog.vue'
 import NanimachiAnswerButton from '@/components/NanimachiAnswerButton.vue'
-import { clearAnswerNanimachi, judgeNanimachi } from '@/composables/gameController'
+import { clearAnswerNanimachi, judgeNanimachi } from '@/composables/nanimachiAnswer'
 import { ref } from 'vue'
 import NanimachiExplanationDialog from '@/components/NanimachiExplanationDialog.vue'
 
@@ -44,6 +44,7 @@ const judge = () => {
         size="small"
         class="w-24"
         icon="pi pi-cog"
+        severity="info"
       />
       <Button
         @click="generateQuestion"
@@ -51,6 +52,7 @@ const judge = () => {
         size="small"
         class="w-24"
         icon="pi pi-refresh"
+        severity="info"
       />
       <NanimachiOption @hide="generateQuestion" />
     </div>
@@ -100,3 +102,4 @@ const judge = () => {
     </div>
   </div>
 </template>
+@/composables/nanimachiGenerateHand@/composables/nanimachiAnswer
