@@ -79,6 +79,19 @@ import ScrollPanel from 'primevue/scrollpanel'
           </a>
           (かみくず)
         </p>
+        <p>
+          <a
+            href="https://github.com/ef81sp/menchin2"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="/github-mark.png"
+              alt="GitHub (open in new tab)"
+              class="h-6 object-contain"
+            />
+          </a>
+        </p>
       </ScrollPanel>
     </template>
   </Card>
