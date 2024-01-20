@@ -11,7 +11,7 @@ import ScrollPanel from 'primevue/scrollpanel'
     <template #content>
       <ScrollPanel class="h-[60svh] w-full p-2 md:h-[70svh]">
         <h3 class="mb-3 mt-7 text-xl font-extrabold">概要</h3>
-        <p>自分のペースでチンイツを練習するためのツールです。</p>
+        <p>自分のペースでチンイツ・牌理を練習するためのツールです。</p>
         <p>無料でご使用いただけます。</p>
 
         <h3 class="mb-3 mt-7 text-xl font-extrabold">特徴</h3>

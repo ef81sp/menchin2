@@ -15,9 +15,9 @@ export default defineConfig({
       },
       includeAssets: ['favicon.ico'],
       manifest: {
-        name: 'めんちんどーじょー2 | チンイツ練習アプリ',
+        name: 'めんちんどーじょー2 | チンイツ・牌理練習アプリ',
         short_name: 'めんちんどーじょー2',
-        description: '自分のペースでチンイツを練習できるWebアプリ"',
+        description: '自分のペースでチンイツと牌理を練習できるWebアプリ"',
         theme_color: '#d1fae5',
         icons: [
           {
