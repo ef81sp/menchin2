@@ -1,7 +1,7 @@
 import { 手牌, 牌 } from 'pairi'
 import { ref } from 'vue'
 import * as option from './nanikiruOption'
-import { generateRandomMountain } from '../utils/generateHandUtils'
+import { generateRandomMountain, randomlyNotenOrTempai } from '../utils/generateHandUtils'
 
 const initialHand = new 手牌([
   new 牌('1s'),
@@ -28,6 +28,7 @@ export const generateHand = (
   range: '1-9' | '2-8' | '3-7' = option.range.value,
   waitNum: number = option.waitNum.value,
 ) => {
+  const _ramdomlyNotenOrTempai = randomlyNotenOrTempai()
   do {
     const mountain = generateRandomMountain(suit, range)
     const handStr = mountain.slice(0, length)
@@ -40,22 +41,30 @@ export const generateHand = (
     const tehai = new 手牌(handPaiList)
     tehai.doツモ(new 牌(mountain[Number(length)]))
 
-    if (waitNum === 0) {
-      // ノーテン以上なのでなんでも返して良い
-      hand.value = tehai
-      return hand.value
-    }
-
     const _analysisResult = tehai.getAnalysisResult14()
     if (_analysisResult === null) {
       throw new Error('手牌がおかしい')
     }
-
     const analysisResult = Array.from(_analysisResult.values())
 
     const minimumShanten = Math.min(
       ...analysisResult.map(({ analysisResult }) => analysisResult.シャンテン数),
     )
+
+    if (waitNum === 0) {
+      // _randomlyNotenOrTempai === 'noten' のときは、シャンテン数が1以上の手牌を返すためやり直し
+      if (_ramdomlyNotenOrTempai === 'noten' && minimumShanten === 0) {
+        continue
+      }
+      // _randomlyNotenOrTempai === 'tempai' のときは、シャンテン数が0の手牌を返すためやり直し
+      if (_ramdomlyNotenOrTempai === 'tempai' && minimumShanten !== 0) {
+        continue
+      }
+      hand.value = tehai
+      return hand.value
+    }
+
+
     if (minimumShanten === 0) {
       const onlyMinimumShanten = analysisResult.filter(
         ({ analysisResult }) => analysisResult.シャンテン数 === minimumShanten,

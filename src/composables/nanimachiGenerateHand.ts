@@ -1,7 +1,7 @@
 import { 手牌, 牌 } from 'pairi'
 import { ref } from 'vue'
 import * as option from './nanimachiOption'
-import { generateRandomMountain } from '../utils/generateHandUtils'
+import { generateRandomMountain, randomlyNotenOrTempai } from '../utils/generateHandUtils'
 
 export const handNanimachi = ref<手牌>(
   new 手牌([
@@ -26,6 +26,8 @@ export const generateHandNanimachi = (
   range: '1-9' | '2-8' | '3-7' = option.range.value,
   waitNum: number = option.waitNum.value,
 ) => {
+  const _ramdomlyNotenOrTempai = randomlyNotenOrTempai()
+
   do {
     const mountain = generateRandomMountain(suit, range)
     const handStr = mountain.slice(0, length)
@@ -36,16 +38,24 @@ export const generateHandNanimachi = (
         : [牌, 牌, 牌, 牌, 牌, 牌, 牌, 牌, 牌, 牌, 牌, 牌, 牌]
 
     const tehai = new 手牌(handPaiList)
-    if (waitNum === 0) {
-      // ノーテン以上なのでなんでも返して良い
-      handNanimachi.value = tehai
-      return handNanimachi.value
-    }
-
     const analysisResult = tehai.getAnalysisResult13()
     if (analysisResult === null) {
       throw new Error('手牌がおかしい')
     }
+
+    if (waitNum === 0) {
+      // _randomlyNotenOrTempai === 'noten' のときは、シャンテン数が1以上の手牌を返すためやり直し
+      if (_ramdomlyNotenOrTempai === 'noten' && analysisResult.シャンテン数 === 0) {
+        continue
+      }
+      // _randomlyNotenOrTempai === 'tempai' のときは、シャンテン数が0の手牌を返すためやり直し
+      if (_ramdomlyNotenOrTempai === 'tempai' && analysisResult.シャンテン数 !== 0) {
+        continue
+      }
+      handNanimachi.value = tehai
+      return handNanimachi.value
+    }
+
     if (analysisResult.シャンテン数 === 0) {
       if (analysisResult.有効牌.length >= waitNum) {
         handNanimachi.value = tehai
