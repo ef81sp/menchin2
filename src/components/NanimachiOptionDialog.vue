@@ -82,7 +82,7 @@ defineEmits(['hide'])
       </div>
 
       <div class="flex flex-col gap-2 *:flex *:items-center *:justify-start *:gap-2">
-        <p class="font-bold">待ちの数p</p>
+        <p class="font-bold">待ちの数</p>
         <div>
           <RadioButton
             v-model="waitNum"
