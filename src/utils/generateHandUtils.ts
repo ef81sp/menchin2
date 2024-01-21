@@ -48,7 +48,7 @@ export const filterRange = <T extends Manzu[] | Pinzu[] | Sozu[]>(
   }
 }
 
-export const randomlyNotenOrTempai = (): "noten" | "tempai" => {
+export const randomlyNotenOrTempai = (): 'noten' | 'tempai' => {
   const random = Math.random()
   if (random < 0.5) {
     return 'noten'
