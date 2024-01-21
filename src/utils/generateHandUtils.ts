@@ -37,12 +37,15 @@ export const filterRange = <T extends Manzu[] | Pinzu[] | Sozu[]>(
         (v) =>
           v !== '1m' &&
           v !== '2m' &&
+          v !== '8m' &&
           v !== '9m' &&
           v !== '1p' &&
           v !== '2p' &&
+          v !== '8p' &&
           v !== '9p' &&
           v !== '1s' &&
           v !== '2s' &&
+          v !== '8s' &&
           v !== '9s',
       ) as T
   }
