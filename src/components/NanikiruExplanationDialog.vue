@@ -8,6 +8,7 @@ import { isTsumo } from '@/utils/isTsumo'
 import type { 牌 } from 'pairi'
 import { sortAnalysisResult14 } from '@/utils/sortAnalysisResult14'
 import ExplanationYuuko from './ExplanationYuuko.vue'
+import { seekMinimumShanten } from '@/utils/nanikiruJudgeUtils'
 
 const props = defineProps<{
   analysisResult: AnalysisResult14
@@ -19,9 +20,7 @@ const _analysisResultValues = computed(() =>
 )
 
 const _isTsumo = computed(() => isTsumo(props.analysisResult, props.tsumo))
-const shanten = computed(() => {
-  return Math.min(..._analysisResultValues.value.map((a) => a.analysisResult.シャンテン数))
-})
+const shanten = computed(() => seekMinimumShanten(_analysisResultValues.value))
 
 const minShantenAnalysisResultValues = computed(() =>
   _analysisResultValues.value.filter((a) => a.analysisResult.シャンテン数 === shanten.value),
