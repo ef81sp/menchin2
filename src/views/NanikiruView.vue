@@ -10,7 +10,7 @@ import NanikiruExplanationDialog from '@/components/NanikiruExplanationDialog.vu
 import { 手牌, 牌 } from 'pairi'
 import { answer, clearAnswer, judge, judgeResult } from '@/composables/nanikiruAnswer'
 import { showNanikiruExplanation, showNanikiruOption } from '@/composables/dialogController'
-import { hand, generateHand } from '@/composables/nanikiruGenerateHand'
+import { hand, generateHand } from '@/composables/nanikiruHand'
 import NanikiruOptionDialog from '@/components/NanikiruOptionDialog.vue'
 
 const analysisResult = computed(() => hand.value.getAnalysisResult14())
