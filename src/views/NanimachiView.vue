@@ -99,7 +99,9 @@ const judge = () => {
         icon="pi pi-book"
         @click="showNanimachiExplanation"
       />
-      <NanimachiExplanationDialog v-bind="handNanimachi.getAnalysisResult13()!.analysisResult" />
+      <NanimachiExplanationDialog
+        :analysis-result="handNanimachi.getAnalysisResult13()!.analysisResult._5ブロック"
+      />
     </div>
   </div>
 </template>
