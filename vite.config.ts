@@ -19,7 +19,7 @@ export default defineConfig({
         short_name: 'めんちんどーじょー2',
         description: '自分のペースでチンイツと牌理を練習できるWebアプリ"',
         theme_color: '#d1fae5',
-        background_color: "#D1FAE5",
+        background_color: '#D1FAE5',
         icons: [
           {
             src: 'logo192.png',
