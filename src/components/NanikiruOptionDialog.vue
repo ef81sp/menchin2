@@ -4,7 +4,7 @@ import RadioButton from 'primevue/radiobutton'
 import Button from 'primevue/button'
 
 import { visibleNanikiruOption } from '@/composables/dialogController'
-import { length, range, suit, waitNum } from '@/composables/nanikiruOption'
+import { length, range, suit, type } from '@/composables/nanikiruOption'
 
 defineEmits(['hide'])
 </script>
@@ -82,33 +82,42 @@ defineEmits(['hide'])
       </div>
 
       <div class="flex flex-col gap-2 *:flex *:items-center *:justify-start *:gap-2">
-        <p class="font-bold">待ちの数</p>
+        <p class="font-bold">出題タイプ</p>
         <div>
           <RadioButton
-            v-model="waitNum"
-            inputId="waitNum-0"
-            name="0"
-            :value="0"
+            v-model="type"
+            inputId="type-noten"
+            name="noten"
+            :value="'noten'"
           />
-          <label for="waitNum-0">0〜<small>(含ノーテン)</small></label>
+          <label for="type-noten">ノーテンのみ</label>
         </div>
         <div>
           <RadioButton
-            v-model="waitNum"
-            inputId="waitNum-1"
-            name="1"
-            :value="1"
+            v-model="type"
+            inputId="type-tempai"
+            name="tempai"
+            :value="'tempai'"
           />
-          <label for="waitNum-1">1〜<small>(テンパイ)</small></label>
+          <label for="type-tempai">テンパイ<small>(1種以上)</small></label>
         </div>
         <div>
           <RadioButton
-            v-model="waitNum"
-            inputId="waitNum-3"
-            name="3"
-            :value="3"
+            v-model="type"
+            inputId="type-tamenmachi"
+            name="tamenmachi"
+            :value="'tamenmachi'"
           />
-          <label for="waitNum-3">3〜<small>(多面)</small></label>
+          <label for="type-tamenmachi">多面待ち<small>(3種以上)</small></label>
+        </div>
+        <div>
+          <RadioButton
+            v-model="type"
+            inputId="type-gochamaze"
+            name="gochamaze"
+            :value="'gochamaze'"
+          />
+          <label for="type-gochamaze">ごちゃまぜ</label>
         </div>
       </div>
 
