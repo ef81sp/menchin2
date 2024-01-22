@@ -35,14 +35,10 @@ export const generateHand = ({
   range = option.range.value,
   type = option.type.value,
 }: GenerateHandArg = {}) => {
-  do {
-    const tehai = generateTehai(suit, range, length, generateType(type))
+  const tehai = generateTehai(suit, range, length, generateType(type))
 
-    hand.value = tehai
-    return tehai
-
-    // eslint-disable-next-line no-constant-condition
-  } while (true)
+  hand.value = tehai
+  return tehai
 }
 
 const generateType = (type: option.Type): Omit<option.Type, 'gochamaze'> => {
@@ -122,7 +118,7 @@ const generateTehaiForNoten = (
   let analysisResult13: AnalysisResult13
   let restMountain: StrPai[]
   let notenPai: StrPai | undefined
-  let i=0
+  let i = 0
   do {
     console.log(i++)
     ;[tehai, analysisResult13, restMountain] = generateHand13(suit, range, length)
