@@ -34,7 +34,7 @@ const yuukoText = computed(() => (props.analysisResult.シャンテン数 === 0 
     />
     <ExplanationBlocks
       v-for="(indivisual, i) in props.analysisResult.indivisuals"
-      v-bind="indivisual"
+      :analysis-result手牌13="indivisual"
       :key="i"
     />
   </Dialog>

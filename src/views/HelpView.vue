@@ -92,6 +92,18 @@ import ScrollPanel from 'primevue/scrollpanel'
             />
           </a>
         </p>
+
+        <h3 class="mb-3 mt-7 text-xl font-extrabold">更新履歴</h3>
+        <h4>2024/1/23</h4>
+        <ul class="mx-5 list-outside list-disc space-y-2">
+          <li>「何切る」ノーテン時の問題生成速度を改善</li>
+          <li>「何切る」設定の一部を変更</li>
+          <li>範囲「3-7」に8の牌が入ってくる不具合を修正</li>
+        </ul>
+        <h4>2024/1/20</h4>
+        <ul class="mx-5 list-outside list-disc space-y-2">
+          <li>公開</li>
+        </ul>
       </ScrollPanel>
     </template>
   </Card>

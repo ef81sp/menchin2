@@ -5,8 +5,47 @@ import Button from 'primevue/button'
 
 import { visibleNanikiruOption } from '@/composables/dialogController'
 import { length, range, suit, type } from '@/composables/nanikiruOption'
+import { computed, ref } from 'vue'
 
-defineEmits(['hide'])
+const emit = defineEmits(['hide'])
+
+const validate = () => {
+  if (range.value === '3-7') {
+    if (type.value === 'noten' || type.value === 'gochamaze') {
+      return false
+    }
+  }
+  return true
+}
+const handleHide = () => {
+  if (!validate()) {
+    return
+  }
+  emit('hide')
+}
+
+const isRange3to7or2to8 = computed(() => range.value === '3-7' || range.value === '2-8')
+const isTypeNotenOrGochamaze = computed(() => type.value === 'noten' || type.value === 'gochamaze')
+const validateMessage = computed(() => {
+  const description37 = `3-7の牌を${length.value + 1}枚選ぶと、必ずテンパイします。`
+  const description28 =
+    length.value === 13
+      ? '2-8の牌を14枚選ぶと、必ずテンパイします。'
+      : `2-8の牌を${length.value + 1}枚選ぶと、ほとんどのケースでテンパイします。`
+  if (range.value === '3-7') {
+    return `牌の範囲が「3-7」の場合、出題タイプは「テンパイ」もしくは「多面待ち」にしてください。${description37}`
+  }
+  if (range.value === '2-8') {
+    return `牌の範囲が「2-8」の場合、出題タイプは「テンパイ」もしくは「多面待ち」にしてください。${description28}`
+  }
+  if (type.value === "noten") {
+    return `出題タイプが「ノーテンのみ」の場合、牌の範囲は「1-9」にしてください。${description28}${description37}`
+  }
+  if (type.value === "gochamaze") {
+    return `出題タイプが「ごちゃまぜ」の場合、牌の範囲は「1-9」にしてください。${description28}${description37}`
+  }
+  return ''
+})
 </script>
 <template>
   <Dialog
@@ -16,7 +55,7 @@ defineEmits(['hide'])
     :dismissableMask="true"
     :style="{ 'min-width': '18rem' }"
     :breakpoints="{ '960px': '75vw', '640px': '85vw' }"
-    @hide="$emit('hide')"
+    @hide="handleHide"
   >
     <div class="m-4 mx-auto flex flex-wrap gap-8 *:text-sm sm:justify-start md:justify-center">
       <div class="flex flex-col gap-2 *:flex *:items-center *:justify-start *:gap-2">
@@ -67,6 +106,7 @@ defineEmits(['hide'])
             inputId="range-28"
             name="2-8"
             value="2-8"
+            :disabled="isTypeNotenOrGochamaze"
           />
           <label for="range-28">2 - 8</label>
         </div>
@@ -76,6 +116,7 @@ defineEmits(['hide'])
             inputId="range-37"
             name="3-7"
             value="3-7"
+            :disabled="isTypeNotenOrGochamaze"
           />
           <label for="range-37">3 - 7</label>
         </div>
@@ -89,6 +130,7 @@ defineEmits(['hide'])
             inputId="type-noten"
             name="noten"
             :value="'noten'"
+            :disabled="isRange3to7or2to8"
           />
           <label for="type-noten">ノーテンのみ</label>
         </div>
@@ -116,6 +158,7 @@ defineEmits(['hide'])
             inputId="type-gochamaze"
             name="gochamaze"
             :value="'gochamaze'"
+            :disabled="isRange3to7or2to8"
           />
           <label for="type-gochamaze">ごちゃまぜ</label>
         </div>
@@ -151,6 +194,9 @@ defineEmits(['hide'])
           <label for="suit-s">ソーズ</label>
         </div>
       </div>
+    </div>
+    <div>
+      <p class="text-sm">{{ validateMessage }}</p>
     </div>
     <template #footer>
       <Button

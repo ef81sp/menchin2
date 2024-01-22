@@ -1,5 +1,5 @@
 import { sortAnalysisResult14 } from '@/utils/sortAnalysisResult14'
-import { generateHand } from './nanikiruHand'
+import { generateHand } from '../nanikiruHand'
 
 describe('generateHand', () => {
   describe('type', () => {
