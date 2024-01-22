@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { PaiStr } from '@/composables/PaiStr.type'
 import VPai from './VPai.vue'
-import type { ExtractResult5ブロック } from 'pairi/dist/手牌utils/手牌utils.type'
+import type { ExtractResult5ブロック } from '@/utils/type'
 defineProps<{
   title: string
   blockList: Block[]

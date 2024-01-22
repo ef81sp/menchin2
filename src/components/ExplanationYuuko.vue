@@ -26,7 +26,7 @@ const nShuNPai = computed(
 <template>
   <Divider />
   <div class="flex flex-wrap items-center">
-    <h5 class="mt-3 text-lg font-bold flex items-center gap-x-1">
+    <h5 class="mt-3 flex items-center gap-x-1 text-lg font-bold">
       打
       <VPai
         :pai-str="discarding.toString()"

@@ -1,6 +1,10 @@
 import { ref } from 'vue'
+export type Length = 7 | 10 | 13
+export type Suit = 'm' | 'p' | 's'
+export type Range = '1-9' | '2-8' | '3-7'
+export type Type = 'noten' | 'tempai' | 'tamenmachi' | 'gochamaze'
 
-export const length = ref<7 | 10 | 13>(13)
-export const suit = ref<'m' | 'p' | 's'>('s')
-export const range = ref<'1-9' | '2-8' | '3-7'>('1-9')
-export const waitNum = ref<number>(1)
+export const length = ref<Length>(13)
+export const suit = ref<Suit>('s')
+export const range = ref<Range>('1-9')
+export const type = ref<Type>('tempai')

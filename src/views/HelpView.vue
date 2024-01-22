@@ -47,8 +47,8 @@ import ScrollPanel from 'primevue/scrollpanel'
             1-9、2-8、3-7から選べます。範囲を狭くすると、ごちゃごちゃするので難易度が上がります。
           </li>
           <li>
-            <span class="font-semibold">待ちの数</span>:
-            0以上(ノーテンあり)、1以上(テンパイ)、3以上(多面待ち)から選べます。
+            <span class="font-semibold">出題タイプ</span>:
+            ノーテンのみ、テンパイ、多面待ち、ごちゃまぜから選べます。
           </li>
           <li><span class="font-semibold">牌の種類</span>: マンズ、ピンズ、ソーズから選べます。</li>
         </ul>
@@ -92,6 +92,18 @@ import ScrollPanel from 'primevue/scrollpanel'
             />
           </a>
         </p>
+
+        <h3 class="mb-3 mt-7 text-xl font-extrabold">更新履歴</h3>
+        <h4 class="mb-2 mt-4 font-semibold">2024/01/23</h4>
+        <ul class="mx-5 list-outside list-disc space-y-1">
+          <li>改善: ノーテン問題の生成速度を改善</li>
+          <li>改善: 設定の一部を変更</li>
+          <li>不具合修正: 範囲「3-7」に8の牌が入ってくる不具合を修正</li>
+        </ul>
+        <h4 class="mb-2 mt-4 font-semibold">2024/01/20</h4>
+        <ul class="mx-5 list-outside list-disc space-y-1">
+          <li>公開</li>
+        </ul>
       </ScrollPanel>
     </template>
   </Card>

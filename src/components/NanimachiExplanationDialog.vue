@@ -2,17 +2,21 @@
 import Dialog from 'primevue/dialog'
 
 import { visibleNanimachiExplanation } from '@/composables/dialogController'
-import type { AnalysisResult手牌13 } from 'pairi/dist/手牌utils/analyze手牌'
+import type { AnalysisResult13 } from '@/utils/type'
 import ExplanationBlocks from './ExplanationBlocks.vue'
 import { computed } from 'vue'
 import ExplanationBlocksSinglePaiList from './ExplanationBlocksSinglePaiList.vue'
 
-const analysis = defineProps<AnalysisResult手牌13>()
+type AnalysisResult手牌13_5 = AnalysisResult13['analysisResult']['_5ブロック']
+
+const props = defineProps<{ analysisResult: AnalysisResult手牌13_5 }>()
 
 const shanten = computed(() =>
-  analysis._5ブロック.シャンテン数 === 0 ? '聴牌' : analysis._5ブロック.シャンテン数 + 'シャンテン',
+  props.analysisResult.シャンテン数 === 0
+    ? '聴牌'
+    : props.analysisResult.シャンテン数 + 'シャンテン',
 )
-const yuukoText = computed(() => (analysis._5ブロック.シャンテン数 === 0 ? '待ち' : '有効牌'))
+const yuukoText = computed(() => (props.analysisResult.シャンテン数 === 0 ? '待ち' : '有効牌'))
 </script>
 <template>
   <Dialog
@@ -26,11 +30,11 @@ const yuukoText = computed(() => (analysis._5ブロック.シャンテン数 ===
     <h4 class="my-4 md:text-2xl">5ブロック {{ shanten }}</h4>
     <ExplanationBlocksSinglePaiList
       :title="yuukoText"
-      :pai-list="analysis._5ブロック.有効牌"
+      :pai-list="props.analysisResult.有効牌"
     />
     <ExplanationBlocks
-      v-for="(indivisual, i) in analysis._5ブロック.indivisuals"
-      v-bind="indivisual"
+      v-for="(indivisual, i) in props.analysisResult.indivisuals"
+      :analysis-result手牌13="indivisual"
       :key="i"
     />
   </Dialog>
