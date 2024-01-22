@@ -5,7 +5,7 @@ import ExplanationBlocksSinglePaiList from './ExplanationBlocksSinglePaiList.vue
 import { computed } from 'vue'
 import type { AnalysisResult手牌13 } from '@/utils/type'
 
-const props = defineProps<{analysisResult手牌13: AnalysisResult手牌13}>()
+const props = defineProps<{ analysisResult手牌13: AnalysisResult手牌13 }>()
 const block = computed(() => props.analysisResult手牌13.ブロック)
 const shanten = computed(() => props.analysisResult手牌13.シャンテン数)
 const yuuko = computed(() => props.analysisResult手牌13.有効牌)

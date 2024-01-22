@@ -118,9 +118,7 @@ const generateTehaiForNoten = (
   let analysisResult13: AnalysisResult13
   let restMountain: StrPai[]
   let notenPai: StrPai | undefined
-  let i = 0
   do {
-    console.log(i++)
     ;[tehai, analysisResult13, restMountain] = generateHand13(suit, range, length)
     if (analysisResult13.シャンテン数 === 0) {
       poolTehai13(tehai)
@@ -147,7 +145,6 @@ const generateTehaiForTempai = (
   let analysisResult13: AnalysisResult13
   let restMountain: StrPai[]
   let tempaiPai: StrPai | undefined
-  console.log('here')
   do {
     ;[tehai, analysisResult13, restMountain] = generateHand13(suit, range, length)
     if (analysisResult13.シャンテン数 >= 2) continue

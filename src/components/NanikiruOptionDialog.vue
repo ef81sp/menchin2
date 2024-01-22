@@ -5,7 +5,7 @@ import Button from 'primevue/button'
 
 import { visibleNanikiruOption } from '@/composables/dialogController'
 import { length, range, suit, type } from '@/composables/nanikiruOption'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 
 const emit = defineEmits(['hide'])
 

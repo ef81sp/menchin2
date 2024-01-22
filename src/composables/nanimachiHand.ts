@@ -90,9 +90,7 @@ const generateTehaiForNoten = (
   // シャンテン数が1以上の手牌ができるまでgenerateHand13を繰り返す
   let tehai: 手牌
   let analysisResult13: AnalysisResult13
-  let i = 0
   do {
-    console.log(i++)
     ;[tehai, analysisResult13] = generateHand13(suit, range, length)
   } while (analysisResult13.シャンテン数 === 0)
 
@@ -107,9 +105,7 @@ const generateTehaiForTempai = (
   // シャンテン数が0の手牌ができるまでgenerateHand13を繰り返す
   let tehai: 手牌
   let analysisResult13: AnalysisResult13
-  let i = 0
   do {
-    console.log(i++)
     ;[tehai, analysisResult13] = generateHand13(suit, range, length)
   } while (analysisResult13.シャンテン数 !== 0)
 
@@ -124,9 +120,7 @@ const generateTehaiForTamenmachi = (
   // シャンテン数が0かつ有効牌が3種以上の手牌ができるまでgenerateHand13を繰り返す
   let tehai: 手牌
   let analysisResult13: AnalysisResult13
-  let i = 0
   do {
-    console.log(i++)
     ;[tehai, analysisResult13] = generateHand13(suit, range, length)
 
     if (analysisResult13.シャンテン数 === 0 && analysisResult13.有効牌.length >= 3) {
