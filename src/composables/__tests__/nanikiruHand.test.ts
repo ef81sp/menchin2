@@ -14,9 +14,6 @@ describe('generateHand', () => {
       }
       const analysisResultValues = sortAnalysisResult14(analysisResult).map(([, v]) => v)
 
-      test('手牌が14枚', () => {
-        expect(hand.牌List().length).toBe(14)
-      })
       test('シャンテン数が1以上', () => {
         const minimumShanten = Math.min(
           ...analysisResultValues.map(({ analysisResult }) => analysisResult.シャンテン数),

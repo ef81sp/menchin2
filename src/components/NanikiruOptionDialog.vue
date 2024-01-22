@@ -10,10 +10,8 @@ import { computed, ref } from 'vue'
 const emit = defineEmits(['hide'])
 
 const validate = () => {
-  if (range.value === '3-7') {
-    if (type.value === 'noten' || type.value === 'gochamaze') {
-      return false
-    }
+  if (isRange3to7or2to8.value && isTypeNotenOrGochamaze.value) {
+    return false
   }
   return true
 }
@@ -33,16 +31,16 @@ const validateMessage = computed(() => {
       ? '2-8の牌を14枚選ぶと、必ずテンパイします。'
       : `2-8の牌を${length.value + 1}枚選ぶと、ほとんどのケースでテンパイします。`
   if (range.value === '3-7') {
-    return `牌の範囲が「3-7」の場合、出題タイプは「テンパイ」もしくは「多面待ち」にしてください。${description37}`
+    return `牌の範囲が「3-7」の場合、出題タイプは「テンパイ」もしくは「多面待ち」だけ選べます。${description37}`
   }
   if (range.value === '2-8') {
-    return `牌の範囲が「2-8」の場合、出題タイプは「テンパイ」もしくは「多面待ち」にしてください。${description28}`
+    return `牌の範囲が「2-8」の場合、出題タイプは「テンパイ」もしくは「多面待ち」だけ選べます。${description28}`
   }
-  if (type.value === "noten") {
-    return `出題タイプが「ノーテンのみ」の場合、牌の範囲は「1-9」にしてください。${description28}${description37}`
+  if (type.value === 'noten') {
+    return `出題タイプが「ノーテンのみ」の場合、牌の範囲は「1-9」だけ選べます。${description28}${description37}`
   }
-  if (type.value === "gochamaze") {
-    return `出題タイプが「ごちゃまぜ」の場合、牌の範囲は「1-9」にしてください。${description28}${description37}`
+  if (type.value === 'gochamaze') {
+    return `出題タイプが「ごちゃまぜ」の場合、牌の範囲は「1-9」だけ選べます。${description28}${description37}`
   }
   return ''
 })
@@ -196,7 +194,7 @@ const validateMessage = computed(() => {
       </div>
     </div>
     <div>
-      <p class="text-sm">{{ validateMessage }}</p>
+      <p class="text-center text-sm">{{ validateMessage }}</p>
     </div>
     <template #footer>
       <Button
