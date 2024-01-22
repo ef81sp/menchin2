@@ -1,6 +1,6 @@
 import { ref, watchEffect } from 'vue'
 import type { Manzu, Pinzu, Sozu } from './PaiStr.type'
-import { handNanimachi } from './nanimachiGenerateHand'
+import { hand } from './nanimachiHand'
 
 export const answerNanimachi = ref<Manzu[] | Pinzu[] | Sozu[]>([])
 watchEffect(() => {
@@ -12,7 +12,7 @@ export const clearAnswerNanimachi = () => {
 }
 
 export const judgeNanimachi = (): { result: 'correct' } | { result: 'wrong' } => {
-  const correctAnswer = handNanimachi.value.getAnalysisResult13()
+  const correctAnswer = hand.value.getAnalysisResult13()
   if (correctAnswer === null) {
     throw new Error('手牌がおかしい')
   }

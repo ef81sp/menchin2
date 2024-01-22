@@ -2,7 +2,7 @@
 import Button from 'primevue/button'
 import Message from 'primevue/message'
 import VPai from '@/components/VPai.vue'
-import { handNanimachi, generateHandNanimachi } from '@/composables/nanimachiGenerateHand'
+import { hand, generateHand } from '@/composables/nanimachiHand'
 import { showNanimachiExplanation, showNanimachiOption } from '@/composables/dialogController'
 import NanimachiOption from '@/components/NanimachiOptionDialog.vue'
 import NanimachiAnswerButton from '@/components/NanimachiAnswerButton.vue'
@@ -14,7 +14,7 @@ const result = ref<string | null>(null)
 const generateQuestion = () => {
   result.value = null
   clearAnswerNanimachi()
-  generateHandNanimachi()
+  generateHand()
 }
 
 const judge = () => {
@@ -33,7 +33,7 @@ const judge = () => {
     <div class="my-4 *:w-[calc(100%/14)]">
       <VPai
         :pai-str="pai.toString()"
-        v-for="(pai, i) in handNanimachi.普通"
+        v-for="(pai, i) in hand.普通"
         :key="i"
         class="sm:w-10 md:w-12 lg:w-14"
       />
@@ -100,9 +100,9 @@ const judge = () => {
         @click="showNanimachiExplanation"
       />
       <NanimachiExplanationDialog
-        :analysis-result="handNanimachi.getAnalysisResult13()!.analysisResult._5ブロック"
+        :analysis-result="hand.getAnalysisResult13()!.analysisResult._5ブロック"
       />
     </div>
   </div>
 </template>
-@/composables/nanimachiGenerateHand@/composables/nanimachiAnswer
+@/composables/nanimachiGenerateHand@/composables/nanimachiAnswer @/composables/nanimachiHand
