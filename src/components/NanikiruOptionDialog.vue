@@ -25,22 +25,22 @@ const handleHide = () => {
 const isRange3to7or2to8 = computed(() => range.value === '3-7' || range.value === '2-8')
 const isTypeNotenOrGochamaze = computed(() => type.value === 'noten' || type.value === 'gochamaze')
 const validateMessage = computed(() => {
-  const description37 = `3-7の牌を${length.value + 1}枚選ぶと、必ずテンパイします。`
-  const description28 =
-    length.value === 13
-      ? '2-8の牌を14枚選ぶと、必ずテンパイします。'
-      : `2-8の牌を${length.value + 1}枚選ぶと、ほとんどのケースでテンパイします。`
+  // const description37 = `3-7の牌を${length.value + 1}枚選ぶと、必ずテンパイします。`
+  // const description28 =
+  //   length.value === 13
+  //     ? '2-8の牌を14枚選ぶと、必ずテンパイします。'
+  //     : `2-8の牌を${length.value + 1}枚選ぶと、ほとんどのケースでテンパイします。`
   if (range.value === '3-7') {
-    return `牌の範囲が「3-7」の場合、出題タイプは「テンパイ」もしくは「多面待ち」だけ選べます。${description37}`
+    return `牌の範囲が「3-7」の場合、出題タイプは「テンパイ」もしくは「多面待ち」だけ選べます。`
   }
   if (range.value === '2-8') {
-    return `牌の範囲が「2-8」の場合、出題タイプは「テンパイ」もしくは「多面待ち」だけ選べます。${description28}`
+    return `牌の範囲が「2-8」の場合、出題タイプは「テンパイ」もしくは「多面待ち」だけ選べます。`
   }
   if (type.value === 'noten') {
-    return `出題タイプが「ノーテンのみ」の場合、牌の範囲は「1-9」だけ選べます。${description28}${description37}`
+    return `出題タイプが「ノーテンのみ」の場合、牌の範囲は「1-9」だけ選べます。`
   }
   if (type.value === 'gochamaze') {
-    return `出題タイプが「ごちゃまぜ」の場合、牌の範囲は「1-9」だけ選べます。${description28}${description37}`
+    return `出題タイプが「ごちゃまぜ」の場合、牌の範囲は「1-9」だけ選べます。`
   }
   return ''
 })

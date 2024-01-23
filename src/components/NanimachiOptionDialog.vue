@@ -23,16 +23,16 @@ const handleHide = () => {
 const isTypeNotenOrGochamaze = computed(() => type.value === 'noten' || type.value === 'gochamaze')
 
 const validateMessage = computed(() => {
-  const description37 = `3-7の牌を${length.value}枚選ぶと、ほとんどのケースでテンパイします。`
+  // const description37 = `3-7の牌を${length.value}枚選ぶと、ほとんどのケースでテンパイします。`
   if (range.value === '3-7') {
-    return `牌の範囲が「3-7」の場合、出題タイプは「テンパイ」もしくは「多面待ち」だけ選べます。${description37}`
+    return `牌の範囲が「3-7」の場合、出題タイプは「テンパイ」もしくは「多面待ち」だけ選べます。`
   }
 
   if (type.value === 'noten') {
-    return `出題タイプが「ノーテンのみ」の場合、牌の範囲は「1-9」か「2-8」だけ選べます。${description37}`
+    return `出題タイプが「ノーテンのみ」の場合、牌の範囲は「1-9」か「2-8」だけ選べます。`
   }
   if (type.value === 'gochamaze') {
-    return `出題タイプが「ごちゃまぜ」の場合、牌の範囲は「1-9」か「2-8」だけ選べます。${description37}`
+    return `出題タイプが「ごちゃまぜ」の場合、牌の範囲は「1-9」か「2-8」だけ選べます。`
   }
 
   return ''
