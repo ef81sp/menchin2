@@ -7,12 +7,12 @@ settings:
 dependencies:
   pairi:
     specifier: github:ef81sp/pairi
-    version: github.com/ef81sp/pairi/a1721b5e38f3514df1b4a6ee515c2f98e82ac9c7
+    version: github.com/ef81sp/pairi/c6ce57c7cff61962e8c744bebaea3a2680a8713a
   primeicons:
     specifier: ^6.0.1
     version: 6.0.1
   primevue:
-    specifier: ^3.46.0
+    specifier: 3.46.0
     version: 3.46.0(vue@3.4.15)
   vue:
     specifier: ^3.4.15
@@ -5761,8 +5761,8 @@ packages:
     engines: {node: '>=12.20'}
     dev: true
 
-  github.com/ef81sp/pairi/a1721b5e38f3514df1b4a6ee515c2f98e82ac9c7:
-    resolution: {tarball: https://codeload.github.com/ef81sp/pairi/tar.gz/a1721b5e38f3514df1b4a6ee515c2f98e82ac9c7}
+  github.com/ef81sp/pairi/c6ce57c7cff61962e8c744bebaea3a2680a8713a:
+    resolution: {tarball: https://codeload.github.com/ef81sp/pairi/tar.gz/c6ce57c7cff61962e8c744bebaea3a2680a8713a}
     name: pairi
-    version: 0.1.14
+    version: 0.1.15
     dev: false

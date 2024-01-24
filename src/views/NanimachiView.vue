@@ -69,7 +69,7 @@ const judge = () => {
     <div class="my-4 flex w-full flex-col items-center gap-y-2">
       <div class="*:text-sm">
         <p>※ノーテンの場合、有効牌を選んで「判定」ボタン</p>
-        <p>※4枚使いの5枚目も回答に含む</p>
+        <p>※順子が完成する場合のみ、4枚使いの5枚目も回答に含む</p>
         <p>※判定は何度でも可能(間違っても再チャレンジ)</p>
       </div>
     </div>

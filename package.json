@@ -17,7 +17,7 @@
   "dependencies": {
     "pairi": "github:ef81sp/pairi",
     "primeicons": "^6.0.1",
-    "primevue": "^3.46.0",
+    "primevue": "3.46.0",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5"
   },
