@@ -94,7 +94,11 @@ import ScrollPanel from 'primevue/scrollpanel'
         </p>
 
         <h3 class="mb-3 mt-7 text-xl font-extrabold">更新履歴</h3>
-        <h4 class="mb-2 mt-4 font-semibold">2024/01/23</h4>
+        <h4 class="mb-2 mt-4 font-semibold">2024/01/24</h4>
+        <ul class="mx-5 list-outside list-disc space-y-1">
+          <li>不具合修正: 4枚使いの手牌の判定が誤っていた問題を修正</li>
+        </ul>
+         <h4 class="mb-2 mt-4 font-semibold">2024/01/23</h4>
         <ul class="mx-5 list-outside list-disc space-y-1">
           <li>改善: ノーテン問題の生成速度を改善</li>
           <li>改善: 設定の一部を変更</li>
