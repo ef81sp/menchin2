@@ -1,4 +1,5 @@
 import { 牌, type 手牌 } from 'pairi'
+import * as option from '../composables/nanikiruOption'
 
 export type AnalysisResult13 = ReturnType<手牌['getAnalysisResult13']> & {}
 export type AnalysisResult手牌13 =
@@ -13,3 +14,10 @@ export type PaiList = PaiList7 | PaiList10 | PaiList13
 export type PaiList7 = [牌, 牌, 牌, 牌, 牌, 牌, 牌]
 export type PaiList10 = [牌, 牌, 牌, 牌, 牌, 牌, 牌, 牌, 牌, 牌]
 export type PaiList13 = [牌, 牌, 牌, 牌, 牌, 牌, 牌, 牌, 牌, 牌, 牌, 牌, 牌]
+
+export type GenerateHandArg = {
+  length?: option.Length
+  suit?: option.Suit
+  range?: option.Range
+  type?: option.Type
+}

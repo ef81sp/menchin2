@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import * as option from './nanimachiOption'
 import { generateRandomMountain } from '../utils/generateHandUtils'
 import type { AnalysisResult13 } from '@/utils/type'
+import { generateTehaiFromNotenListNanimachi } from '@/utils/generateTehaiFromNotenListNanimachi'
 
 export const hand = ref<手牌>(
   new 手牌([
@@ -87,6 +88,11 @@ const generateTehaiForNoten = (
   range: NonNullable<GenerateHandArg['range']>,
   length: NonNullable<GenerateHandArg['length']>,
 ): 手牌 => {
+  // ノーテンの比率が低いものは、パターンリストから作る
+  if (range === '3-7') {
+    return generateTehaiFromNotenListNanimachi(suit, range, length)
+  }
+
   // シャンテン数が1以上の手牌ができるまでgenerateHand13を繰り返す
   let tehai: 手牌
   let analysisResult13: AnalysisResult13

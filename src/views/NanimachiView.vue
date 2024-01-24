@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import Button from 'primevue/button'
 import Message from 'primevue/message'
+import Checkbox from 'primevue/checkbox'
 import VPai from '@/components/VPai.vue'
 import { hand, generateHand } from '@/composables/nanimachiHand'
 import { showNanimachiExplanation, showNanimachiOption } from '@/composables/dialogController'
 import NanimachiOption from '@/components/NanimachiOptionDialog.vue'
 import NanimachiAnswerButton from '@/components/NanimachiAnswerButton.vue'
-import { clearAnswerNanimachi, judgeNanimachi } from '@/composables/nanimachiAnswer'
+import { answerAll, clearAnswerNanimachi, judgeNanimachi } from '@/composables/nanimachiAnswer'
 import { ref } from 'vue'
 import NanimachiExplanationDialog from '@/components/NanimachiExplanationDialog.vue'
 
@@ -60,6 +61,10 @@ const judge = () => {
     <div class="mt-6 flex-col text-center md:w-4/5">
       <h3>選択欄</h3>
       <NanimachiAnswerButton />
+      <p class="mt-4">
+        <Checkbox v-model="answerAll" input-id="answer-all" :binary="true" /> 
+        <label for="answer-all" class="ml-1">34種全ての牌</label>
+      </p>
     </div>
     <div class="my-4 flex w-full flex-col items-center gap-y-2">
       <div class="*:text-sm">
