@@ -10,16 +10,13 @@ export const generateRandomMountain = (suit: 'm' | 'p' | 's', range: '1-9' | '2-
       return shuffle(filterRange<Sozu[]>(sozu, range))
   }
 }
-export const shuffle = (array: readonly Manzu[] | Pinzu[] | Sozu[]) => {
-  // Fisher-Yates shuffle
-  const result = array.slice()
-  for (let i = result.length - 1; i > 0; i--) {
+export function shuffle<T>(array: readonly T[]): T[] {
+  const newArray = [...array]
+  for (let i = newArray.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1))
-    const tmp = result[i]
-    result[i] = result[j]
-    result[j] = tmp
+    ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
   }
-  return result
+  return newArray
 }
 export const filterRange = <T extends Manzu[] | Pinzu[] | Sozu[]>(
   paiList: T,

@@ -5,44 +5,31 @@ import Button from 'primevue/button'
 
 import { visibleNanikiruOption } from '@/composables/dialogController'
 import { length, range, suit, type } from '@/composables/nanikiruOption'
-import { computed } from 'vue'
+import { computed, watchEffect } from 'vue'
 
 const emit = defineEmits(['hide'])
 
-const validate = () => {
-  if (isRange3to7or2to8.value && isTypeNotenOrGochamaze.value) {
-    return false
-  }
-  return true
-}
 const handleHide = () => {
-  if (!validate()) {
-    return
-  }
   emit('hide')
 }
 
-const isRange3to7or2to8 = computed(() => range.value === '3-7' || range.value === '2-8')
+const isWholeTempai = computed(
+  () => range.value === '3-7' && (length.value === 13 || length.value === 10),
+)
 const isTypeNotenOrGochamaze = computed(() => type.value === 'noten' || type.value === 'gochamaze')
 const validateMessage = computed(() => {
-  // const description37 = `3-7の牌を${length.value + 1}枚選ぶと、必ずテンパイします。`
-  // const description28 =
-  //   length.value === 13
-  //     ? '2-8の牌を14枚選ぶと、必ずテンパイします。'
-  //     : `2-8の牌を${length.value + 1}枚選ぶと、ほとんどのケースでテンパイします。`
-  if (range.value === '3-7') {
-    return `牌の範囲が「3-7」の場合、出題タイプは「テンパイ」もしくは「多面待ち」だけ選べます。`
+  if (isWholeTempai.value) {
+    return `牌の枚数が「10枚」か「13枚」で牌の範囲が「3-7」の場合、出題タイプは「テンパイ」もしくは「多面待ち」だけ選べます。（必ずテンパイするため）`
   }
-  if (range.value === '2-8') {
-    return `牌の範囲が「2-8」の場合、出題タイプは「テンパイ」もしくは「多面待ち」だけ選べます。`
-  }
-  if (type.value === 'noten') {
-    return `出題タイプが「ノーテンのみ」の場合、牌の範囲は「1-9」だけ選べます。`
-  }
-  if (type.value === 'gochamaze') {
-    return `出題タイプが「ごちゃまぜ」の場合、牌の範囲は「1-9」だけ選べます。`
+  if (range.value === '3-7' && length.value === 7 && isTypeNotenOrGochamaze.value) {
+    return `牌の枚数が「7枚」で牌の範囲が「3-7」の場合、ノーテンのパターンは4種類だけあります。`
   }
   return ''
+})
+watchEffect(() => {
+  if (isWholeTempai.value && isTypeNotenOrGochamaze.value) {
+    type.value = 'tempai'
+  }
 })
 </script>
 <template>
@@ -104,7 +91,6 @@ const validateMessage = computed(() => {
             inputId="range-28"
             name="2-8"
             value="2-8"
-            :disabled="isTypeNotenOrGochamaze"
           />
           <label for="range-28">2 - 8</label>
         </div>
@@ -114,7 +100,6 @@ const validateMessage = computed(() => {
             inputId="range-37"
             name="3-7"
             value="3-7"
-            :disabled="isTypeNotenOrGochamaze"
           />
           <label for="range-37">3 - 7</label>
         </div>
@@ -128,9 +113,18 @@ const validateMessage = computed(() => {
             inputId="type-noten"
             name="noten"
             :value="'noten'"
-            :disabled="isRange3to7or2to8"
+            :disabled="isWholeTempai"
           />
-          <label for="type-noten">ノーテンのみ</label>
+          <label
+            for="type-noten"
+            v-if="isWholeTempai"
+            ><del class="text-surface-400">ノーテンのみ</del></label
+          >
+          <label
+            for="type-noten"
+            v-else
+            >ノーテンのみ</label
+          >
         </div>
         <div>
           <RadioButton
@@ -156,9 +150,18 @@ const validateMessage = computed(() => {
             inputId="type-gochamaze"
             name="gochamaze"
             :value="'gochamaze'"
-            :disabled="isRange3to7or2to8"
+            :disabled="isWholeTempai"
           />
-          <label for="type-gochamaze">ごちゃまぜ</label>
+          <label
+            for="type-gochamaze"
+            v-if="isWholeTempai"
+            ><del class="text-surface-400">ごちゃまぜ</del></label
+          >
+          <label
+            for="type-gochamaze"
+            v-else
+            >ごちゃまぜ</label
+          >
         </div>
       </div>
 
