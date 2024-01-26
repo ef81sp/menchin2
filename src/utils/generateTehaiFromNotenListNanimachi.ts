@@ -11,7 +11,7 @@ export function generateTehaiFromNotenListNanimachi(
   const notenList = getNotenList(range, length)
   // notenListからランダムに1つ選ぶ
   const noten = notenList[Math.floor(Math.random() * notenList.length)]
-  const  paiList = genPaiList(noten, suit)
+  const paiList = genPaiList(noten, suit)
   const tehai = new 手牌(paiList)
   return tehai
 }

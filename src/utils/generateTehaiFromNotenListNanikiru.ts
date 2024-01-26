@@ -1,12 +1,7 @@
 import { 手牌, 牌 } from 'pairi'
 import { shuffle } from './generateHandUtils'
 import type { GenerateHandArg, PaiList, PaiList10, PaiList13, PaiList7, StrPai } from '@/utils/type'
-import {
-  noten2To8_8,
-  noten2To8_11,
-  noten2To8_14,
-  noten3To7_8,
-} from '@/utils/const'
+import { noten2To8_8, noten2To8_11, noten2To8_14, noten3To7_8 } from '@/utils/const'
 
 export function generateTehaiFromNotenListNanikiru(
   suit: NonNullable<GenerateHandArg['suit']>,

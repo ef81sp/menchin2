@@ -2,11 +2,7 @@ import { 手牌, 牌 } from 'pairi'
 import { ref } from 'vue'
 import * as option from './nanikiruOption'
 import { generateRandomMountain } from '../utils/generateHandUtils'
-import type {
-  AnalysisResult13,
-  GenerateHandArg,
-  StrPai,
-} from '@/utils/type'
+import type { AnalysisResult13, GenerateHandArg, StrPai } from '@/utils/type'
 import { generateTehaiFromNotenListNanikiru } from '../utils/generateTehaiFromNotenListNanikiru'
 
 const initialHand = new 手牌([
@@ -27,7 +23,6 @@ const initialHand = new 手牌([
 initialHand.doツモ(new 牌('1s'))
 
 export const hand = ref<手牌>(initialHand)
-
 
 export const generateHand = ({
   length = option.length.value,

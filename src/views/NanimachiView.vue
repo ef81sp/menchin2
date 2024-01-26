@@ -61,9 +61,17 @@ const judge = () => {
     <div class="mt-6 flex-col text-center md:w-4/5">
       <h3>選択欄</h3>
       <NanimachiAnswerButton />
-      <p class="mt-4">
-        <Checkbox v-model="answerAll" input-id="answer-all" :binary="true" /> 
-        <label for="answer-all" class="ml-1">34種全ての牌</label>
+      <p class="mt-2">
+        <Checkbox
+          v-model="answerAll"
+          input-id="answer-all"
+          :binary="true"
+        />
+        <label
+          for="answer-all"
+          class="ml-1"
+          >34種全ての牌</label
+        >
       </p>
     </div>
     <div class="my-4 flex w-full flex-col items-center gap-y-2">
@@ -110,4 +118,3 @@ const judge = () => {
     </div>
   </div>
 </template>
-@/composables/nanimachiGenerateHand@/composables/nanimachiAnswer @/composables/nanimachiHand
