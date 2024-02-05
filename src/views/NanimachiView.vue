@@ -112,9 +112,7 @@ const judge = () => {
         icon="pi pi-book"
         @click="showNanimachiExplanation"
       />
-      <NanimachiExplanationDialog
-        :analysis-result="hand.getAnalysisResult13()!"
-      />
+      <NanimachiExplanationDialog :analysis-result="hand.getAnalysisResult13()!" />
     </div>
   </div>
 </template>

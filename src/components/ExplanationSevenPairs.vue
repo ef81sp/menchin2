@@ -11,7 +11,7 @@ const yuuko = computed(() => props.analysisResult手牌13_7pairs.有効牌)
 <template>
   <Divider />
   <div class="flex flex-col gap-y-2 lg:gap-y-4">
-       <ExplanationBlocksSinglePaiList
+    <ExplanationBlocksSinglePaiList
       :title="shanten === 0 ? '待ち' : '有効'"
       :pai-list="yuuko"
       class="mt-3 lg:mt-6"

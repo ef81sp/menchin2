@@ -37,11 +37,16 @@ const yuukoText = computed(() => (props.analysisResult.シャンテン数 === 0 
       :indivisual="indivisual"
       :key="i"
     />
-    <template v-if="props.analysisResult.analysisResult.七対子.シャンテン数 === props.analysisResult.シャンテン数">
+    <template
+      v-if="
+        props.analysisResult.analysisResult.七対子.シャンテン数 ===
+        props.analysisResult.シャンテン数
+      "
+    >
       <h5 class="mt-16 md:text-xl">七対子</h5>
       <ExplanationSevenPairs
         :analysis-result手牌13_7pairs="props.analysisResult.analysisResult.七対子"
       />
-      </template>
+    </template>
   </Dialog>
 </template>
