@@ -2,9 +2,10 @@ import { 牌, type 手牌 } from 'pairi'
 import * as option from '../composables/nanikiruOption'
 
 export type AnalysisResult13 = ReturnType<手牌['getAnalysisResult13']> & {}
-export type AnalysisResult手牌13 =
+export type AnalysisResult手牌13_5 =
   AnalysisResult13['analysisResult']['_5ブロック']['indivisuals'][number]
-export type ExtractResult5ブロック = AnalysisResult手牌13['ブロック']
+export type AnalysisResult手牌13_7pairs = AnalysisResult13['analysisResult']['七対子']
+export type ExtractResult5ブロック = AnalysisResult手牌13_5['ブロック']
 export type AnalysisResult14 = ReturnType<手牌['getAnalysisResult14']> & {}
 export type AnalysisResult14Value = AnalysisResult14 extends Map<unknown, infer V> ? V : never
 

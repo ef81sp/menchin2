@@ -3,14 +3,14 @@ import Divider from 'primevue/divider'
 import ExplanationBlocksBlock from './ExplanationBlocksBlock.vue'
 import ExplanationBlocksSinglePaiList from './ExplanationBlocksSinglePaiList.vue'
 import { computed } from 'vue'
-import type { AnalysisResult手牌13 } from '@/utils/type'
+import type { AnalysisResult手牌13_5 } from '@/utils/type'
 
-const props = defineProps<{ analysisResult手牌13: AnalysisResult手牌13 }>()
-const block = computed(() => props.analysisResult手牌13.ブロック)
-const shanten = computed(() => props.analysisResult手牌13.シャンテン数)
-const yuuko = computed(() => props.analysisResult手牌13.有効牌)
+const props = defineProps<{ indivisual: AnalysisResult手牌13_5 }>()
+const block = computed(() => props.indivisual.ブロック)
+const shanten = computed(() => props.indivisual.シャンテン数)
+const yuuko = computed(() => props.indivisual.有効牌)
 const restList = computed(() => {
-  const rest = props.analysisResult手牌13.ブロック.rest
+  const rest = props.indivisual.ブロック.rest
   return Object.values(rest).flatMap((p) => p)
 })
 </script>

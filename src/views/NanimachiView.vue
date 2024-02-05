@@ -113,7 +113,7 @@ const judge = () => {
         @click="showNanimachiExplanation"
       />
       <NanimachiExplanationDialog
-        :analysis-result="hand.getAnalysisResult13()!.analysisResult._5ブロック"
+        :analysis-result="hand.getAnalysisResult13()!"
       />
     </div>
   </div>
