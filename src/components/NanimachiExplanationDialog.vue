@@ -37,12 +37,12 @@ const yuukoText = computed(() => (props.analysisResult.シャンテン数 === 0 
         props.analysisResult.シャンテン数
       "
     >
-    <h5 class="mt-16 md:text-xl">5ブロック</h5>
-    <ExplanationBlocks
-      v-for="(indivisual, i) in props.analysisResult.analysisResult._5ブロック.indivisuals"
-      :indivisual="indivisual"
-      :key="i"
-    />
+      <h5 class="mt-16 md:text-xl">5ブロック</h5>
+      <ExplanationBlocks
+        v-for="(indivisual, i) in props.analysisResult.analysisResult._5ブロック.indivisuals"
+        :indivisual="indivisual"
+        :key="i"
+      />
     </template>
     <template
       v-if="

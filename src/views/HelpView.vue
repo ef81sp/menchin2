@@ -99,10 +99,7 @@ import ScrollPanel from 'primevue/scrollpanel'
         <h3 class="mb-3 mt-7 text-xl font-extrabold">更新履歴</h3>
         <h4 class="mb-2 mt-4 font-semibold">2024/02/05</h4>
         <ul class="mx-5 list-outside list-disc space-y-1">
-          <li>
-            不具合修正:
-            何待ちモードで七対子の有効牌が一部誤っていた問題を修正
-          </li>
+          <li>不具合修正: 何待ちモードで七対子の有効牌が一部誤っていた問題を修正</li>
           <li>改善: 「塔子」 → 「搭子」 と表記を修正</li>
         </ul>
         <h4 class="mb-2 mt-4 font-semibold">2024/01/25</h4>
