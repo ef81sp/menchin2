@@ -29,7 +29,7 @@ const restList = computed(() => {
     />
     <ExplanationBlocksBlock
       v-if="block.塔子.length !== 0"
-      title="塔子"
+      title="搭子"
       :block-list="block.塔子"
     />
     <ExplanationBlocksSinglePaiList
