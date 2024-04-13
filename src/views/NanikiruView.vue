@@ -12,8 +12,17 @@ import { answer, clearAnswer, judge, judgeResult } from '@/composables/nanikiruA
 import { showNanikiruExplanation, showNanikiruOption } from '@/composables/dialogController'
 import { hand, generateHand } from '@/composables/nanikiruHand'
 import NanikiruOptionDialog from '@/components/NanikiruOptionDialog.vue'
+import { isChanged, save } from '@/composables/nanikiruOption'
 
 const analysisResult = computed(() => hand.value.getAnalysisResult14())
+
+const handleHideOption = () => {
+  if (isChanged.value) {
+    generateQuestion()
+    save()
+  }
+}
+
 const generateQuestion = () => {
   clearAnswer()
   generateHand()
@@ -53,7 +62,7 @@ watchEffect(() => {
         icon="pi pi-refresh"
         severity="info"
       />
-      <NanikiruOptionDialog @hide="generateQuestion" />
+      <NanikiruOptionDialog @hide="handleHideOption" />
     </div>
     <div class="mt-6 flex-col items-center gap-4 text-center md:w-4/5">
       <h3>選択欄</h3>

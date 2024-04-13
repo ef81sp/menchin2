@@ -4,6 +4,7 @@ import Message from 'primevue/message'
 import Checkbox from 'primevue/checkbox'
 import VPai from '@/components/VPai.vue'
 import { hand, generateHand } from '@/composables/nanimachiHand'
+import { isChanged, save } from '@/composables/nanimachiOption'
 import { showNanimachiExplanation, showNanimachiOption } from '@/composables/dialogController'
 import NanimachiOption from '@/components/NanimachiOptionDialog.vue'
 import NanimachiAnswerButton from '@/components/NanimachiAnswerButton.vue'
@@ -12,6 +13,13 @@ import { ref } from 'vue'
 import NanimachiExplanationDialog from '@/components/NanimachiExplanationDialog.vue'
 
 const result = ref<string | null>(null)
+
+const handleHideOption = () => {
+  if (isChanged.value) {
+    generateQuestion()
+    save()
+  }
+}
 const generateQuestion = () => {
   result.value = null
   clearAnswerNanimachi()
@@ -56,7 +64,7 @@ const judge = () => {
         icon="pi pi-refresh"
         severity="info"
       />
-      <NanimachiOption @hide="generateQuestion" />
+      <NanimachiOption @hide="handleHideOption" />
     </div>
     <div class="mt-6 flex-col text-center md:w-4/5">
       <h3>選択欄</h3>
