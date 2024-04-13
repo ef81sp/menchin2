@@ -17,7 +17,7 @@ export const previous = {
   type: ref<Type>('tempai'),
 }
 
-export const isChanged= computed(() => {
+export const isChanged = computed(() => {
   return (
     length.value !== previous.length.value ||
     suit.value !== previous.suit.value ||
