@@ -42,6 +42,15 @@ watchEffect(() => {
     :breakpoints="{ '960px': '75vw', '640px': '85vw' }"
     @hide="handleHide"
   >
+    <div class="mx-auto mb-8 flex flex-wrap gap-8 *:text-sm sm:justify-start md:justify-center">
+      <ul class="px-auto text-sm *:leading-4">
+        <li>
+          <strong>7枚形</strong>の練習には「枚数: <strong>7</strong>」「出題タイプ:
+          <strong>多面待ち</strong>」
+        </li>
+        <li>「牌の範囲」は<strong>狭いほど難しい</strong>(密集するから)</li>
+      </ul>
+    </div>
     <div class="m-4 mx-auto flex flex-wrap gap-8 *:text-sm sm:justify-start md:justify-center">
       <div class="flex flex-col gap-2 *:flex *:items-center *:justify-start *:gap-2">
         <p class="font-bold">枚数</p>
