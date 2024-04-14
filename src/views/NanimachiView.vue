@@ -83,14 +83,14 @@ const showAllCheckbox = computed(
         />
         <label
           for="answer-all"
-          class="ml-1"
-          >手牌にある牌以外全ての牌<br /><small
-            >※チートイツで、何を引いてもシャンテン数が進むとき</small
+          class="ml-1 leading-4"
+          >手牌にない牌すべて<br /><small
+            >※(稀)チートイツで、何を引いてもシャンテン数が進むときだけ選択</small
           ></label
         >
       </p>
     </div>
-    <div class="my-6 flex w-full flex-col items-center gap-y-2">
+    <div class="my-8 flex w-full flex-col items-center gap-y-2">
       <div class="*:text-sm">
         <p>※ノーテンの場合、有効牌を選んで「判定」ボタン</p>
         <p>※順子が完成する場合のみ、4枚使いの5枚目も回答に含む</p>
