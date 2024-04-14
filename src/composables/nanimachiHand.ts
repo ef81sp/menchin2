@@ -5,6 +5,7 @@ import { generateRandomMountain } from '../utils/generateHandUtils'
 import type { AnalysisResult13 } from '@/utils/type'
 import { generateTehaiFromNotenListNanimachi } from '@/utils/generateTehaiFromNotenListNanimachi'
 
+// 手牌.普通 の型が展開されてしまうのはなぜなんだ
 export const hand = ref<手牌>(
   new 手牌([
     new 牌('1s'),

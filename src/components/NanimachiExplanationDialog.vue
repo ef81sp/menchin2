@@ -1,12 +1,16 @@
 <script setup lang="ts">
-import Dialog from 'primevue/dialog'
-
-import { visibleNanimachiExplanation } from '@/composables/dialogController'
-import type { AnalysisResult13 } from '@/utils/type'
-import ExplanationBlocks from './ExplanationBlocks.vue'
 import { computed } from 'vue'
+
+import type { AnalysisResult13 } from '@/utils/type'
+
+import Dialog from 'primevue/dialog'
+import ExplanationBlocks from './ExplanationBlocks.vue'
 import ExplanationBlocksSinglePaiList from './ExplanationBlocksSinglePaiList.vue'
 import ExplanationSevenPairs from './ExplanationSevenPairs.vue'
+
+import { visibleNanimachiExplanation } from '@/composables/dialogController'
+import { hand } from '@/composables/nanimachiHand'
+import type { 牌 } from 'pairi'
 
 const props = defineProps<{ analysisResult: AnalysisResult13 }>()
 
@@ -31,6 +35,14 @@ const yuukoText = computed(() => (props.analysisResult.シャンテン数 === 0 
       :title="yuukoText"
       :pai-list="props.analysisResult.有効牌"
     />
+
+    <!-- 型が合わん。 -->
+    <ExplanationBlocksSinglePaiList
+      title="問題"
+      :pai-list="hand.普通"
+      class="mt-12"
+    />
+
     <template
       v-if="
         props.analysisResult.analysisResult._5ブロック.シャンテン数 ===
