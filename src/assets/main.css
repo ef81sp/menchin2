@@ -7,3 +7,6 @@
 a {
   @apply underline;
 }
+ul {
+  @apply mx-5 list-outside list-disc space-y-2;
+}

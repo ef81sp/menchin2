@@ -91,7 +91,4 @@ h3 {
 h4 {
   @apply mb-2 mt-4 text-lg font-bold;
 }
-ul {
-  @apply mx-5 list-outside list-disc space-y-2;
-}
 </style>
