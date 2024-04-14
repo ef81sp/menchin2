@@ -4,20 +4,20 @@ import Message from 'primevue/message'
 import Checkbox from 'primevue/checkbox'
 import VPai from '@/components/VPai.vue'
 import { hand, generateHand } from '@/composables/nanimachiHand'
-import { isChanged, save } from '@/composables/nanimachiOption'
+import * as nanimachiOption from '@/composables/nanimachiOption'
 import { showNanimachiExplanation, showNanimachiOption } from '@/composables/dialogController'
 import NanimachiOption from '@/components/NanimachiOptionDialog.vue'
 import NanimachiAnswerButton from '@/components/NanimachiAnswerButton.vue'
 import { answerAll, clearAnswerNanimachi, judgeNanimachi } from '@/composables/nanimachiAnswer'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import NanimachiExplanationDialog from '@/components/NanimachiExplanationDialog.vue'
 
 const result = ref<string | null>(null)
 
 const handleHideOption = () => {
-  if (isChanged.value) {
+  if (nanimachiOption.isChanged.value) {
     generateQuestion()
-    save()
+    nanimachiOption.save()
   }
 }
 const generateQuestion = () => {
@@ -34,6 +34,12 @@ const judge = () => {
     result.value = '不正解'
   }
 }
+
+const showAllCheckbox = computed(
+  () =>
+    nanimachiOption.length.value === 13 &&
+    (nanimachiOption.type.value === 'noten' || nanimachiOption.type.value === 'gochamaze'),
+)
 </script>
 
 <template>
@@ -69,7 +75,7 @@ const judge = () => {
     <div class="mt-6 flex-col text-center md:w-4/5">
       <h3>選択欄</h3>
       <NanimachiAnswerButton />
-      <p class="mt-2">
+      <p class="mt-2" v-if="showAllCheckbox">
         <Checkbox
           v-model="answerAll"
           input-id="answer-all"
