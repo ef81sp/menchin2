@@ -75,7 +75,10 @@ const showAllCheckbox = computed(
     <div class="mt-6 flex-col text-center md:w-4/5">
       <h3>選択欄</h3>
       <NanimachiAnswerButton />
-      <p class="mt-2" v-if="showAllCheckbox">
+      <p
+        class="mt-2"
+        v-if="showAllCheckbox"
+      >
         <Checkbox
           v-model="answerAll"
           input-id="answer-all"
