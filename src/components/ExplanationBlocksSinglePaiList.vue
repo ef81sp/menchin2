@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import type { PaiStr } from '@/composables/PaiStr.type'
 import VPai from './VPai.vue'
-import type { 牌 } from 'pairi'
 defineProps<{
   title: string
-  paiList: 牌[]
+  paiList: PaiStr[]
 }>()
 </script>
 <template>
@@ -11,10 +11,10 @@ defineProps<{
     <p class="flex min-w-fit items-center text-sm md:text-base lg:text-lg">{{ title }}</p>
     <div class="flex flex-wrap">
       <VPai
-        v-for="(p, i) in paiList.map((p) => p.toString())"
+        v-for="(p, i) in paiList"
         :pai-str="p"
         :key="i"
-        class="w-5 md:w-8 lg:w-11"
+        class="w-5 md:w-8 lg:w-10"
       />
     </div>
   </div>

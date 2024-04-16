@@ -9,6 +9,19 @@ export const suit = ref<Suit>('s')
 export const range = ref<Range>('1-9')
 export const type = ref<Type>('tempai')
 
+export const needBlockNum = computed(() => {
+  switch (length.value) {
+    case 7:
+      return 3
+    case 10:
+      return 4
+    case 13:
+      return 5
+    default:
+      throw new Error('Invalid length')
+  }
+})
+
 // 以前の設定値を記録するref
 export const previous = {
   length: ref<Length>(13),

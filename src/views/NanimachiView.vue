@@ -35,6 +35,17 @@ const judge = () => {
   }
 }
 
+const title = computed(() => {
+  switch (nanimachiOption.type.value) {
+    case 'noten':
+      return '何受け？'
+    case 'gochamaze':
+      return '何待ち or 何受け？'
+    default:
+      return '何待ち？'
+  }
+})
+
 const showAllCheckbox = computed(
   () =>
     nanimachiOption.length.value === 13 &&
@@ -44,7 +55,7 @@ const showAllCheckbox = computed(
 
 <template>
   <div class="*:mx-auto *:flex *:justify-center">
-    <h2 class="m-3 text-center text-2xl">何待ち？</h2>
+    <h2 class="m-3 text-center text-2xl">{{ title }}</h2>
     <div class="my-4 *:w-[calc(100%/14)]">
       <VPai
         :pai-str="pai.toString()"
@@ -75,7 +86,10 @@ const showAllCheckbox = computed(
     <div class="mt-6 flex-col text-center md:w-4/5">
       <h3>選択欄</h3>
       <NanimachiAnswerButton />
-      <p class="mt-2" v-if="showAllCheckbox">
+      <p
+        class="mt-2"
+        v-if="showAllCheckbox"
+      >
         <Checkbox
           v-model="answerAll"
           input-id="answer-all"

@@ -1,5 +1,6 @@
 import { 牌, type 手牌 } from 'pairi'
 import * as option from '../composables/nanikiruOption'
+import type { PaiStr } from '@/composables/PaiStr.type'
 
 export type AnalysisResult13 = ReturnType<手牌['getAnalysisResult13']> & {}
 export type AnalysisResult手牌13_5 =
@@ -21,4 +22,9 @@ export type GenerateHandArg = {
   suit?: option.Suit
   range?: option.Range
   type?: option.Type
+}
+
+export type NanimachiExplanation = {
+  block: PaiStr[][]
+  yuuko: PaiStr[]
 }

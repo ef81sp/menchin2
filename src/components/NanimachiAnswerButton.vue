@@ -26,7 +26,7 @@ const options = computed(() => {
     v-model="answerNanimachi"
     :options="options"
     multiple
-    class="*:max-w-[calc(100%/9)] *:px-1 *:py-2 *:md:w-[calc(120%/9)] *:md:px-2 *:md:py-3 *:justify-center"
+    class="*:max-w-[calc(100%/9)] *:justify-center *:px-1 *:py-2 *:md:w-[calc(120%/9)] *:md:px-2 *:md:py-3"
   >
     <template #option="{ option }">
       <VPai :pai-str="option" />
