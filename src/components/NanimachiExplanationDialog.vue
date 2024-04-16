@@ -10,6 +10,8 @@ import ExplanationSevenPairs from './ExplanationSevenPairs.vue'
 
 import { visibleNanimachiExplanation } from '@/composables/dialogController'
 import { hand } from '@/composables/nanimachiHand'
+import { needBlockNum } from '@/composables/nanimachiOption'
+import type { PaiStr } from '@/composables/PaiStr.type'
 
 const props = defineProps<{ analysisResult: AnalysisResult13 }>()
 
@@ -38,17 +40,38 @@ const indivisualsStr = computed<NanimachiExplanation[]>(() => {
     },
   )
 
-  // シャンポン待ちが冗長なので、blockが同一のものをひとつにまとめ、yuukoはその全てをマージする
-  const unionSame = wholeResult.reduce<NanimachiExplanation[]>((acc, cur) => {
-    const index = acc.findIndex((a) => JSON.stringify(a.block) === JSON.stringify(cur.block))
-    if (index === -1) {
-      return [...acc, cur]
-    }
-    // yuukoはユニークにする
-    acc[index].yuuko = Array.from(new Set([...acc[index].yuuko, ...cur.yuuko])).sort()
+  const isTanki = (block: PaiStr[][]) => {
+    const mentsuCount = block.filter((block) => block.length === 3).length
+    return mentsuCount === needBlockNum.value - 1
+  }
 
-    return acc
-  }, [])
+  // シャンポン待ちが冗長なので、blockが同一のものをひとつにまとめ、yuukoはその全てをマージする
+  const unionSame = wholeResult
+    .reduce<NanimachiExplanation[]>((acc, cur) => {
+      const index = acc.findIndex((a) => JSON.stringify(a.block) === JSON.stringify(cur.block))
+      if (index === -1) {
+        return [...acc, cur]
+      }
+      // yuukoはユニークにする
+      acc[index].yuuko = Array.from(new Set([...acc[index].yuuko, ...cur.yuuko])).sort()
+
+      return acc
+    }, [])
+    // 単騎以外 > 有効牌の多い順 > 有効牌の若い順にソートする
+    .sort((a, b) => {
+      // 単騎待ちは後ろ
+      if (isTanki(a.block) && !isTanki(b.block)) {
+        return 1
+      } else if (!isTanki(a.block) && isTanki(b.block)) {
+        return -1
+      }
+      // 有効牌多い順
+      if (a.yuuko.length !== b.yuuko.length) {
+        return b.yuuko.length - a.yuuko.length
+      }
+      // 有効牌若い順
+      return a.yuuko[0].localeCompare(b.yuuko[0])
+    })
   return unionSame
 })
 </script>

@@ -4,24 +4,12 @@ import VPai from './VPai.vue'
 import type { StrPai } from '@/utils/type'
 import ExplanationBlocksBlockCaption from './ExplanationBlocksBlockCaption.vue'
 
-import { length } from '@/composables/nanimachiOption'
+import { needBlockNum } from '@/composables/nanimachiOption'
 const props = defineProps<{
   title: string
   blockList: StrPai[][]
 }>()
 
-const needBlockNum = computed(() => {
-  switch (length.value) {
-    case 7:
-      return 3
-    case 10:
-      return 4
-    case 13:
-      return 5
-    default:
-      throw new Error('Invalid length')
-  }
-})
 const toitsuCount = computed(
   () => props.blockList.filter((block) => block.length === 2 && block[0] === block[1]).length,
 )
@@ -30,7 +18,7 @@ const blockCount = computed(() => props.blockList.filter((block) => block.length
 const blockListWithInfo = computed<
   {
     block: StrPai[]
-    type: '面子' | '搭子' | '対子' | '雀頭' | '単騎' | 'くっつき' | '不要'
+    type: '面子' | '搭子' | '対子' | '雀頭' | '単騎' | '雀頭候補' | 'くっつき' | '不要'
   }[]
 >(() => {
   return props.blockList.map((block) => {
@@ -39,7 +27,10 @@ const blockListWithInfo = computed<
     }
     if (block.length === 2) {
       if (block[0] === block[1]) {
-        return toitsuCount.value === 1 ? { block, type: '雀頭' } : { block, type: '対子' }
+        // ブロックが足りてて、対子が1つだけの場合は雀頭
+        return blockCount.value === needBlockNum.value && toitsuCount.value === 1
+          ? { block, type: '雀頭' }
+          : { block, type: '対子' }
       }
       return { block, type: '搭子' }
     }
@@ -47,6 +38,9 @@ const blockListWithInfo = computed<
     // 孤立牌の扱い
     if (mentsuCount.value === needBlockNum.value - 1) {
       return { block, type: '単騎' }
+    }
+    if (blockCount.value === needBlockNum.value - 1 && toitsuCount.value === 0) {
+      return { block, type: '雀頭候補' }
     }
     if (blockCount.value === needBlockNum.value) {
       return { block, type: '不要' }

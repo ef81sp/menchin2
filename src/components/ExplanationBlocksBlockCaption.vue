@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 const props = defineProps<{
-  type: '面子' | '搭子' | '対子' | '雀頭' | '単騎' | 'くっつき' | '不要'
+  type: '面子' | '搭子' | '対子' | '雀頭' | '単騎' | '雀頭候補' | 'くっつき' | '不要'
 }>()
 
 const color = computed<string>(() => {
@@ -14,6 +14,7 @@ const color = computed<string>(() => {
     case '単騎':
       return 'yellow-500'
     case 'くっつき':
+    case '雀頭候補':
       return 'blue-500'
     case '不要':
       return 'gray-500'
@@ -24,12 +25,12 @@ const color = computed<string>(() => {
 </script>
 <template>
   <div
-    class="flex justify-center border-t-2 pt-1"
-    :class="`border-t-${color} bg-gradient-to-b from-${color} to-40%`"
+    class="flex justify-center pt-1"
+    :class="`bg-gradient-to-b from-${color} to-40%`"
   >
     <p
       class="max-w-8 text-nowrap object-fill text-center text-xs md:text-sm"
-      :class="{ 'origin-left scale-x-50': type === 'くっつき' }"
+      :class="{ 'origin-left scale-x-50': type.length > 2 }"
     >
       {{ type }}
     </p>
