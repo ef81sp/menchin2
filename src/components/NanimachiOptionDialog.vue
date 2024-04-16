@@ -172,10 +172,7 @@ const handleHide = () => {
             input-id="exclude-5"
             :binary="true"
           />
-          <label
-            for="exclude-5"
-            >4枚使いの5枚目を回答に含めない</label
-          >
+          <label for="exclude-5">4枚使いの5枚目を回答に含めない</label>
         </div>
       </div>
     </div>
