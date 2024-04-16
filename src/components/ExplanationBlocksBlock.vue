@@ -50,14 +50,12 @@ const blockListWithInfo = computed<
     }
     if (blockCount.value === needBlockNum.value) {
       return { block, type: '不要' }
-    } else 
-    return { block, type: 'くっつき' }
+    } else return { block, type: 'くっつき' }
   })
 })
 </script>
 <template>
   <div class="flex gap-x-2 lg:gap-x-4">
-    <!-- <p class="flex min-w-fit items-center text-sm md:text-base lg:text-lg">{{ title }}</p> -->
     <div class="md:4 flex flex-wrap items-center gap-3">
       <div
         class="flex flex-col"
