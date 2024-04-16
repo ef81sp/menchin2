@@ -107,7 +107,9 @@ const showAllCheckbox = computed(
     <div class="my-8 flex w-full flex-col items-center gap-y-2">
       <div class="*:text-sm">
         <p>※ノーテンの場合、有効牌を選んで「判定」ボタン</p>
-        <p v-if="nanimachiOption.exclude5.value">※回答に4枚使いの<strong>5枚目は含まない</strong></p>
+        <p v-if="nanimachiOption.exclude5.value">
+          ※回答に4枚使いの<strong>5枚目は含まない</strong>
+        </p>
         <p v-else>※順子が完成する場合のみ、回答に4枚使いの<strong>5枚目も含む</strong></p>
         <p>※判定は何度でも可能(間違っても再チャレンジ)</p>
       </div>
