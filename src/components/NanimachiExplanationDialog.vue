@@ -102,7 +102,7 @@ const indivisualsStr = computed<NanimachiExplanation[]>(() => {
         props.analysisResult.シャンテン数
       "
     >
-      <h5 class="mt-8 md:mt-16 md:text-xl">5ブロック</h5>
+      <h5 class="mt-8 md:mt-16 md:text-xl">ブロック分け</h5>
       <ExplanationBlocks
         v-for="(indivisual, i) in indivisualsStr"
         :nanimachi-explanation="indivisual"
