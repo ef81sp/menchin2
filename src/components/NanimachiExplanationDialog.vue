@@ -8,6 +8,7 @@ import ExplanationBlocks from './ExplanationBlocks.vue'
 import ExplanationBlocksSinglePaiList from './ExplanationBlocksSinglePaiList.vue'
 import ExplanationSevenPairs from './ExplanationSevenPairs.vue'
 
+import { correctAnswerStrArr } from '@/composables/nanimachiHand'
 import { visibleNanimachiExplanation } from '@/composables/dialogController'
 import { hand } from '@/composables/nanimachiHand'
 import { needBlockNum } from '@/composables/nanimachiOption'
@@ -87,7 +88,7 @@ const indivisualsStr = computed<NanimachiExplanation[]>(() => {
     <h4 class="my-4 md:text-2xl">{{ shanten }}</h4>
     <ExplanationBlocksSinglePaiList
       :title="yuukoText"
-      :pai-list="props.analysisResult.有効牌.map((p) => p.toString())"
+      :pai-list="correctAnswerStrArr"
     />
 
     <ExplanationBlocksSinglePaiList

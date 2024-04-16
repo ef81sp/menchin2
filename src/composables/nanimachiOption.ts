@@ -8,6 +8,7 @@ export const length = ref<Length>(13)
 export const suit = ref<Suit>('s')
 export const range = ref<Range>('1-9')
 export const type = ref<Type>('tempai')
+export const exclude5 = ref<boolean>(true)
 
 export const needBlockNum = computed(() => {
   switch (length.value) {
@@ -28,6 +29,7 @@ export const previous = {
   suit: ref<Suit>('s'),
   range: ref<Range>('1-9'),
   type: ref<Type>('tempai'),
+  exclude5: ref<boolean>(true),
 }
 
 export const isChanged = computed(() => {
@@ -35,7 +37,8 @@ export const isChanged = computed(() => {
     length.value !== previous.length.value ||
     suit.value !== previous.suit.value ||
     range.value !== previous.range.value ||
-    type.value !== previous.type.value
+    type.value !== previous.type.value ||
+    exclude5.value !== previous.exclude5.value
   )
 })
 
