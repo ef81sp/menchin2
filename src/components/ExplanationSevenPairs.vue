@@ -6,7 +6,7 @@ import type { AnalysisResult手牌13_7pairs } from '@/utils/type'
 
 const props = defineProps<{ analysisResult手牌13_7pairs: AnalysisResult手牌13_7pairs }>()
 const shanten = computed(() => props.analysisResult手牌13_7pairs.シャンテン数)
-const yuuko = computed(() => props.analysisResult手牌13_7pairs.有効牌)
+const yuuko = computed(() => props.analysisResult手牌13_7pairs.有効牌.map((p) => p.toString()))
 </script>
 <template>
   <Divider />
