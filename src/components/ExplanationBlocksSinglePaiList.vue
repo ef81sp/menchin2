@@ -14,7 +14,7 @@ defineProps<{
         v-for="(p, i) in paiList"
         :pai-str="p"
         :key="i"
-        class="w-5 md:w-8 lg:w-11"
+        class="w-5 md:w-8 lg:w-10"
       />
     </div>
   </div>
