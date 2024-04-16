@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import Dialog from 'primevue/dialog'
 import RadioButton from 'primevue/radiobutton'
+import Checkbox from 'primevue/checkbox'
 import Button from 'primevue/button'
 
 import { visibleNanimachiOption } from '@/composables/dialogController'
-import { length, range, suit, type } from '@/composables/nanimachiOption'
+import { exclude5, length, range, suit, type } from '@/composables/nanimachiOption'
 
 const emit = defineEmits(['hide'])
 const handleHide = () => {
@@ -161,6 +162,17 @@ const handleHide = () => {
             value="s"
           />
           <label for="suit-s">ソーズ</label>
+        </div>
+      </div>
+      <div class="flex flex-col gap-2 *:flex *:items-center *:justify-start *:gap-2">
+        <p class="font-bold">4枚使いの5枚目</p>
+        <div>
+          <Checkbox
+            v-model="exclude5"
+            input-id="exclude-5"
+            :binary="true"
+          />
+          <label for="exclude-5">4枚使いの5枚目を回答に含めない</label>
         </div>
       </div>
     </div>

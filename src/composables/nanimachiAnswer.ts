@@ -1,6 +1,7 @@
 import { ref, watchEffect } from 'vue'
 import type { Manzu, Pinzu, Sozu } from './PaiStr.type'
-import { hand } from './nanimachiHand'
+import { correctAnswerStr, hand } from './nanimachiHand'
+import type { StrPai } from '@/utils/type'
 
 export const answerNanimachi = ref<Manzu[] | Pinzu[] | Sozu[]>([])
 watchEffect(() => {
@@ -26,11 +27,8 @@ export const judgeNanimachi = (): { result: 'correct' } | { result: 'wrong' } =>
   if (answerAll.value) {
     return { result: 'wrong' }
   }
-  return answerNanimachi.value.join().trim() ===
-    correctAnswer.有効牌
-      .map((p) => p.toString())
-      .join()
-      .trim()
+
+  return answerNanimachi.value.join().trim() === correctAnswerStr.value
     ? { result: 'correct' }
     : { result: 'wrong' }
 }

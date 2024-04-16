@@ -1,9 +1,10 @@
 import { 手牌, 牌 } from 'pairi'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import * as option from './nanimachiOption'
 import { generateRandomMountain } from '../utils/generateHandUtils'
-import type { AnalysisResult13 } from '@/utils/type'
+import type { AnalysisResult13, StrPai } from '@/utils/type'
 import { generateTehaiFromNotenListNanimachi } from '@/utils/generateTehaiFromNotenListNanimachi'
+import type { PaiStr } from './PaiStr.type'
 
 // 手牌.普通 の型が展開されてしまうのはなぜなんだ
 export const hand = ref<手牌>(
@@ -23,6 +24,46 @@ export const hand = ref<手牌>(
     new 牌('9s'),
   ]),
 )
+
+type Use4 = { pai: StrPai; count: number }[] | null
+export const use4 = computed<Use4>(() => {
+  const handStr = hand.value.普通.map((p) => p.toString())
+  const count = new Map<StrPai, number>()
+  for (const p of handStr) {
+    count.set(p, (count.get(p) ?? 0) + 1)
+  }
+  // Mapから値が3以下のものを削除
+  count.forEach((c, p) => {
+    if (c <= 3) {
+      count.delete(p)
+    }
+  })
+
+  if (count.size === 0) {
+    return null
+  }
+  // 残りを配列に変換
+  return Array.from(count).map(([pai, count]) => ({ pai, count }))
+})
+
+export const correctAnswerStrArr = computed<PaiStr[]>(() => {
+  const analysisResult = hand.value.getAnalysisResult13()
+  if (analysisResult === null) {
+    throw new Error('手牌がおかしい')
+  }
+
+  const yuukoStrArr = analysisResult.有効牌.map((p) => p.toString())
+
+  // 5枚目を除外しない設定の場合、もしくは4枚使いがない場合はそのまま返す
+  if (!option.exclude5.value || use4.value === null) {
+    return yuukoStrArr
+  }
+
+  // use4の配列に含まれる牌をすべて除外
+  const yuukoWithoutUse4 = yuukoStrArr.filter((p) => !use4.value!.some((u) => u.pai === p))
+  return yuukoWithoutUse4
+})
+export const correctAnswerStr = computed<string>(() => correctAnswerStrArr.value.join().trim())
 
 type GenerateHandArg = {
   length?: option.Length
