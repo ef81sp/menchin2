@@ -48,4 +48,5 @@ export const save = () => {
   previous.suit.value = suit.value
   previous.range.value = range.value
   previous.type.value = type.value
+  previous.exclude5.value = exclude5.value
 }
