@@ -1,4 +1,5 @@
-import { generateHand } from '../nanimachiHand'
+import { generateHand } from './nanimachiHand'
+import { describe, expect, it } from 'vitest'
 
 describe('generateHand', () => {
   describe('type', () => {
@@ -10,7 +11,7 @@ describe('generateHand', () => {
       if (analysisResult === null) {
         throw new Error('analysisResultがnull')
       }
-      test('シャンテン数が1以上', () => {
+      it('シャンテン数が1以上', () => {
         expect(analysisResult.シャンテン数).toBeGreaterThan(0)
       })
     })
@@ -22,10 +23,10 @@ describe('generateHand', () => {
       if (analysisResult === null) {
         throw new Error('analysisResultがnull')
       }
-      test('シャンテン数が0', () => {
+      it('シャンテン数が0', () => {
         expect(analysisResult.シャンテン数).toBe(0)
       })
-      test('待ち牌が1種以上', () => {
+      it('待ち牌が1種以上', () => {
         expect(analysisResult.有効牌.length).toBeGreaterThanOrEqual(1)
       })
     })
@@ -37,10 +38,10 @@ describe('generateHand', () => {
       if (analysisResult === null) {
         throw new Error('analysisResultがnull')
       }
-      test('シャンテン数が0', () => {
+      it('シャンテン数が0', () => {
         expect(analysisResult.シャンテン数).toBe(0)
       })
-      test('待ち牌が3種以上', () => {
+      it('待ち牌が3種以上', () => {
         expect(analysisResult.有効牌.length).toBeGreaterThanOrEqual(3)
       })
     })
@@ -52,7 +53,7 @@ describe('generateHand', () => {
       if (analysisResult === null) {
         throw new Error('analysisResultがnull')
       }
-      test('エラーが起きない', () => {
+      it('エラーが起きない', () => {
         expect(analysisResult.シャンテン数).toBeGreaterThanOrEqual(0)
       })
     })
@@ -62,7 +63,7 @@ describe('generateHand', () => {
       const hand = generateHand({
         length: 7,
       })
-      test('手牌が7枚', () => {
+      it('手牌が7枚', () => {
         expect(hand.牌List().length).toBe(7)
       })
     })
@@ -70,7 +71,7 @@ describe('generateHand', () => {
       const hand = generateHand({
         length: 10,
       })
-      test('手牌が10枚', () => {
+      it('手牌が10枚', () => {
         expect(hand.牌List().length).toBe(10)
       })
     })
@@ -78,7 +79,7 @@ describe('generateHand', () => {
       const hand = generateHand({
         length: 13,
       })
-      test('手牌が13枚', () => {
+      it('手牌が13枚', () => {
         expect(hand.牌List().length).toBe(13)
       })
     })
@@ -88,7 +89,7 @@ describe('generateHand', () => {
       const hand = generateHand({
         suit: 'm',
       })
-      test('牌がすべてマンズ', () => {
+      it('牌がすべてマンズ', () => {
         expect(hand.牌List().every((p) => p.suit === 'm')).toBe(true)
       })
     })
@@ -96,7 +97,7 @@ describe('generateHand', () => {
       const hand = generateHand({
         suit: 'p',
       })
-      test('牌がすべてピンズ', () => {
+      it('牌がすべてピンズ', () => {
         expect(hand.牌List().every((p) => p.suit === 'p')).toBe(true)
       })
     })
@@ -104,7 +105,7 @@ describe('generateHand', () => {
       const hand = generateHand({
         suit: 's',
       })
-      test('牌がすべてソーズ', () => {
+      it('牌がすべてソーズ', () => {
         expect(hand.牌List().every((p) => p.suit === 's')).toBe(true)
       })
     })
@@ -114,7 +115,7 @@ describe('generateHand', () => {
       const hand = generateHand({
         range: '1-9',
       })
-      test('牌がすべて1-9', () => {
+      it('牌がすべて1-9', () => {
         expect(hand.牌List().every((p) => p.number >= 1 && p.number <= 9)).toBe(true)
       })
     })
@@ -122,7 +123,7 @@ describe('generateHand', () => {
       const hand = generateHand({
         range: '2-8',
       })
-      test('牌がすべて2-8', () => {
+      it('牌がすべて2-8', () => {
         expect(hand.牌List().every((p) => p.number >= 2 && p.number <= 8)).toBe(true)
       })
     })
@@ -130,7 +131,7 @@ describe('generateHand', () => {
       const hand = generateHand({
         range: '3-7',
       })
-      test('牌がすべて3-7', () => {
+      it('牌がすべて3-7', () => {
         expect(hand.牌List().every((p) => p.number >= 3 && p.number <= 7)).toBe(true)
       })
     })
