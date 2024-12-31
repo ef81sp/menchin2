@@ -1,4 +1,14 @@
-import { length, suit, range, type, exclude5, needBlockNum, previous, isChanged, save } from './nanimachiOption'
+import {
+  length,
+  suit,
+  range,
+  type,
+  exclude5,
+  needBlockNum,
+  previous,
+  isChanged,
+  save,
+} from './nanimachiOption'
 import { describe, it, expect, beforeEach } from 'vitest'
 
 describe('nanimachiOptionのコンポーザブル', () => {
