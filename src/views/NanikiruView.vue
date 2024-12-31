@@ -71,11 +71,6 @@ watchEffect(() => {
         :hand="hand as 手牌"
         v-model="answer"
       />
-      <Button
-        label="ツモ"
-        class="w-24"
-        @click="answer = 'tsumo'"
-      />
     </div>
     <div class="my-4 flex w-full flex-col items-center gap-y-2">
       <div class="*:text-sm">
