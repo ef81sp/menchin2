@@ -71,7 +71,7 @@
     </li>
     <li>
       <span class="font-semibold"><kbd>t</kbd></span
-      >: ツモ  (Tsumo)
+      >: ツモ (Tsumo)
       <ul>
         <li>何切るのみ</li>
         <li>テンキーの Enter でもOK</li>
