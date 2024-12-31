@@ -59,59 +59,32 @@ const {
   digit1, digit2, digit3, digit4, digit5, digit6, digit7, digit8, digit9,
   numpad1, numpad2, numpad3, numpad4, numpad5, numpad6, numpad7, numpad8, numpad9
 } = useMagicKeys()
-watch(digit1, (v) => {
-  if (v) toggleSelect(1, suit.value)
+watch([digit1, numpad1], (keys) => {
+  if (keys.includes(true)) toggleSelect(1, suit.value)
 })
-watch(digit2, (v) => {
-  if (v) toggleSelect(2, suit.value)
+watch([digit2, numpad2], (keys) => {
+  if (keys.includes(true)) toggleSelect(2, suit.value)
 })
-watch(digit3, (v) => {
-  if (v) toggleSelect(3, suit.value)
+watch([digit3, numpad3], (keys) => {
+  if (keys.includes(true)) toggleSelect(3, suit.value)
 })
-watch(digit4, (v) => {
-  if (v) toggleSelect(4, suit.value)
+watch([digit4, numpad4], (keys) => {
+  if (keys.includes(true)) toggleSelect(4, suit.value)
 })
-watch(digit5, (v) => {
-  if (v) toggleSelect(5, suit.value)
+watch([digit5, numpad5], (keys) => {
+  if (keys.includes(true)) toggleSelect(5, suit.value)
 })
-watch(digit6, (v) => {
-  if (v) toggleSelect(6, suit.value)
+watch([digit6, numpad6], (keys) => {
+  if (keys.includes(true)) toggleSelect(6, suit.value)
 })
-watch(digit7, (v) => {
-  if (v) toggleSelect(7, suit.value)
+watch([digit7, numpad7], (keys) => {
+  if (keys.includes(true)) toggleSelect(7, suit.value)
 })
-watch(digit8, (v) => {
-  if (v) toggleSelect(8, suit.value)
+watch([digit8, numpad8], (keys) => {
+  if (keys.includes(true)) toggleSelect(8, suit.value)
 })
-watch(digit9, (v) => {
-  if (v) toggleSelect(9, suit.value)
-})
-watch(numpad1, (v) => {
-  if (v) toggleSelect(1, suit.value)
-})
-watch(numpad2, (v) => {
-  if (v) toggleSelect(2, suit.value)
-})
-watch(numpad3, (v) => {
-  if (v) toggleSelect(3, suit.value)
-})
-watch(numpad4, (v) => {
-  if (v) toggleSelect(4, suit.value)
-})
-watch(numpad5, (v) => {
-  if (v) toggleSelect(5, suit.value)
-})
-watch(numpad6, (v) => {
-  if (v) toggleSelect(6, suit.value)
-})
-watch(numpad7, (v) => {
-  if (v) toggleSelect(7, suit.value)
-})
-watch(numpad8, (v) => {
-  if (v) toggleSelect(8, suit.value)
-})
-watch(numpad9, (v) => {
-  if (v) toggleSelect(9, suit.value)
+watch([digit9, numpad9], (keys) => {
+  if (keys.includes(true)) toggleSelect(9, suit.value)
 })
 </script>
 

@@ -12,6 +12,7 @@ import { answerAll, clearAnswerNanimachi, judgeNanimachi } from '@/composables/n
 import { computed, ref, watch } from 'vue'
 import NanimachiExplanationDialog from '@/components/NanimachiExplanationDialog.vue'
 import { useMagicKeys } from '@vueuse/core'
+import { reloadKeyStr, explainKeyStr, judgeKeyStr } from '@/composables/shortcutKey'
 
 const result = ref<string | null>(null)
 
@@ -35,32 +36,27 @@ const judge = () => {
     result.value = '不正解'
   }
 }
-const { shift_enter, numpadEnter, r, j, e } = useMagicKeys()
-watch(j, (v, prev) => {
-  if (prev === true && v === false) {
+// prettier-ignore
+const { 
+  numpadEnter, j,
+  r, numpadAdd, 
+  e, numpadSubtract
+} = useMagicKeys()
+watch([j, numpadEnter], (keys, prevKeys) => {
+  if (prevKeys.some((k) => k) && keys.every((k) => !k)) {
     judge()
   }
 })
-watch(shift_enter, (v, prev) => {
-  if (prev === true && v === false) {
-    judge()
-  }
-})
-watch(numpadEnter, (v, prev) => {
-  if (prev === true && v === false) {
-    judge()
-  }
-})
-watch(r, (v, prev) => {
-  if (prev === true && v === false) {
+watch([r, numpadAdd], (keys, prevKeys) => {
+  if (prevKeys.some((k) => k) && keys.every((k) => !k)) {
     generateQuestion()
   }
 })
-watch([result, e], ([r, e], [pr, pe]) => {
+watch([result, e, numpadSubtract], ([r, ...keys], [_, ...prevKeys]) => {
   if (r === null) {
     return
   }
-  if (!e && pe) {
+  if (prevKeys.some((k) => k) && keys.every((k) => !k)) {
     showNanimachiExplanation()
   }
 })
@@ -105,9 +101,9 @@ const showAllCheckbox = computed(
       />
       <Button
         @click="generateQuestion"
-        label="別の問題 [r]"
+        :label="`別の問題 [${reloadKeyStr}]`"
         size="small"
-        class="w-28"
+        class="w-30"
         icon="pi pi-refresh"
         severity="info"
       />
@@ -147,8 +143,8 @@ const showAllCheckbox = computed(
     <div>
       <Button
         @click="judge"
-        label="判定 [j]"
-        class="w-28"
+        :label="`判定 [${judgeKeyStr}]`"
+        class="w-30"
         icon="pi pi-check"
       />
     </div>
@@ -171,7 +167,7 @@ const showAllCheckbox = computed(
     <div v-if="result !== null">
       <Button
         size="small"
-        label="解説を見る [e]"
+        :label="`解説を見る [${explainKeyStr}]`"
         icon="pi pi-book"
         @click="showNanimachiExplanation"
       />

@@ -46,6 +46,46 @@
   <h4>PWA対応</h4>
   <p>お持ちのスマートフォンにインストールして、全画面表示で使うことができます。</p>
 
+  <h4>キーボードショートカット</h4>
+  <ul>
+    <li>
+      <span class="font-semibold">数字キー</span>: 牌の選択
+      <ul>
+        <li>テンキーの数字キーでもOK</li>
+      </ul>
+    </li>
+    <li>
+      <span class="font-semibold"><kbd>r</kbd></span
+      >: 別の問題 (Reload)
+      <ul>
+        <li>テンキーの + でもOK</li>
+      </ul>
+    </li>
+    <li>
+      <span class="font-semibold"><kbd>j</kbd></span
+      >: 判定 (Judge)
+      <ul>
+        <li>何待ちのみ</li>
+        <li>テンキーの Enter でもOK</li>
+      </ul>
+    </li>
+    <li>
+      <span class="font-semibold"><kbd>t</kbd></span
+      >: ツモ  (Tsumo)
+      <ul>
+        <li>何切るのみ</li>
+        <li>テンキーの Enter でもOK</li>
+      </ul>
+    </li>
+    <li>
+      <span class="font-semibold"><kbd>e</kbd></span
+      >: 解説を見る (Explain)
+      <ul>
+        <li>テンキーの - でもOK</li>
+      </ul>
+    </li>
+  </ul>
+
   <h3>動画・配信での使用</h3>
   <p>ご自由に使ってください。許可は不要ですので、許可を得る目的での連絡はしないでください。</p>
   <p>リンクを貼っていただけると喜びます。</p>

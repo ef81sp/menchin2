@@ -14,6 +14,7 @@ import { hand, generateHand } from '@/composables/nanikiruHand'
 import NanikiruOptionDialog from '@/components/NanikiruOptionDialog.vue'
 import { isChanged, save } from '@/composables/nanikiruOption'
 import { useMagicKeys } from '@vueuse/core'
+import { reloadKeyStr, explainKeyStr } from '@/composables/shortcutKey'
 
 const analysisResult = computed(() => hand.value.getAnalysisResult14())
 
@@ -42,18 +43,22 @@ watchEffect(() => {
   judge(analysisResult.value, tsumo as 牌, answer.value)
 })
 
-const { r, e } = useMagicKeys()
+// prettier-ignore
+const { 
+  r, numpadAdd, 
+  e, numpadSubtract
+} = useMagicKeys()
 
-watch(r, (v, prev) => {
-  if (prev === true && v === false) {
+watch([r, numpadAdd], (keys, prevKeys) => {
+  if (prevKeys.some((k) => k) && keys.every((k) => !k)) {
     generateQuestion()
   }
 })
-watch([answer, e], ([a, e], [pa, pe]) => {
+watch([answer, e, numpadSubtract], ([a, ...keys], [_, ...prevKeys]) => {
   if (a === null) {
     return
   }
-  if (!e && pe) {
+  if (prevKeys.some((k) => k) && keys.every((k) => !k)) {
     showNanikiruExplanation()
   }
 })
@@ -73,9 +78,9 @@ watch([answer, e], ([a, e], [pa, pe]) => {
       />
       <Button
         @click="generateQuestion"
-        label="別の問題 [r]"
+        :label="`別の問題 [${reloadKeyStr}]`"
         size="small"
-        class="w-28"
+        class="w-30"
         icon="pi pi-refresh"
         severity="info"
       />
@@ -116,7 +121,7 @@ watch([answer, e], ([a, e], [pa, pe]) => {
     <div v-if="judgeResult !== null">
       <Button
         size="small"
-        label="解説を見る [e]"
+        :label="`解説を見る [${explainKeyStr}]`"
         icon="pi pi-book"
         @click="showNanikiruExplanation"
       />

@@ -5,6 +5,7 @@ import VPai from './VPai.vue'
 import { type PaiStr } from '@/composables/PaiStr.type'
 import { computed, ref, watch } from 'vue'
 import { useMagicKeys } from '@vueuse/core'
+import { tsumoKeyStr } from '@/composables/shortcutKey'
 
 const props = defineProps<{
   hand: 手牌
@@ -64,67 +65,37 @@ const setAnswer = (num: number | 'tsumo') => {
 const {
   digit1, digit2, digit3, digit4, digit5, digit6, digit7, digit8, digit9,
   numpad1, numpad2, numpad3, numpad4, numpad5, numpad6, numpad7, numpad8, numpad9,
-  t
+  t, numpadEnter
 } = useMagicKeys()
-watch(digit1, (v) => {
-  if (v) setAnswer(1)
+watch([digit1, numpad1], (keys) => {
+  if (keys.includes(true)) setAnswer(1)
 })
-watch(digit2, (v) => {
-  if (v) setAnswer(2)
+watch([digit2, numpad2], (keys) => {
+  if (keys.includes(true)) setAnswer(2)
 })
-watch(digit3, (v) => {
-  if (v) setAnswer(3)
+watch([digit3, numpad3], (keys) => {
+  if (keys.includes(true)) setAnswer(3)
 })
-watch(digit4, (v) => {
-  if (v) setAnswer(4)
+watch([digit4, numpad4], (keys) => {
+  if (keys.includes(true)) setAnswer(4)
 })
-watch(digit5, (v) => {
-  if (v) setAnswer(5)
+watch([digit5, numpad5], (keys) => {
+  if (keys.includes(true)) setAnswer(5)
 })
-watch(digit6, (v) => {
-  if (v) setAnswer(6)
+watch([digit6, numpad6], (keys) => {
+  if (keys.includes(true)) setAnswer(6)
 })
-watch(digit7, (v) => {
-  if (v) setAnswer(7)
+watch([digit7, numpad7], (keys) => {
+  if (keys.includes(true)) setAnswer(7)
 })
-watch(digit8, (v) => {
-  if (v) setAnswer(8)
+watch([digit8, numpad8], (keys) => {
+  if (keys.includes(true)) setAnswer(8)
 })
-watch(digit9, (v) => {
-  if (v) setAnswer(9)
+watch([digit9, numpad9], (keys) => {
+  if (keys.includes(true)) setAnswer(9)
 })
-watch(numpad1, (v) => {
-  if (v) setAnswer(1)
-})
-watch(numpad2, (v) => {
-  if (v) setAnswer(2)
-})
-watch(numpad3, (v) => {
-  if (v) setAnswer(3)
-})
-watch(numpad4, (v) => {
-  if (v) setAnswer(4)
-})
-watch(numpad5, (v) => {
-  if (v) setAnswer(5)
-})
-watch(numpad6, (v) => {
-  if (v) setAnswer(6)
-})
-watch(numpad7, (v) => {
-  if (v) setAnswer(7)
-})
-watch(numpad8, (v) => {
-  if (v) setAnswer(8)
-})
-watch(numpad9, (v) => {
-  if (v) setAnswer(9)
-})
-watch(t, (v) => {
-  if (v) {
-    console.log('t')
-    setAnswer('tsumo')
-  }
+watch([t, numpadEnter], (ks) => {
+  if (ks.includes(true)) setAnswer('tsumo')
 })
 </script>
 
@@ -161,8 +132,8 @@ watch(t, (v) => {
     </div>
   </div>
   <Button
-    label="ツモ [t]"
-    class="w-24"
+    :label="`ツモ [${tsumoKeyStr}]`"
+    class="w-28"
     @click="handleClick('tsumo')"
   />
 </template>
