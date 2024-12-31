@@ -9,8 +9,9 @@ import { showNanimachiExplanation, showNanimachiOption } from '@/composables/dia
 import NanimachiOption from '@/components/NanimachiOptionDialog.vue'
 import NanimachiAnswerButton from '@/components/NanimachiAnswerButton.vue'
 import { answerAll, clearAnswerNanimachi, judgeNanimachi } from '@/composables/nanimachiAnswer'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import NanimachiExplanationDialog from '@/components/NanimachiExplanationDialog.vue'
+import { useMagicKeys } from '@vueuse/core'
 
 const result = ref<string | null>(null)
 
@@ -34,6 +35,27 @@ const judge = () => {
     result.value = '不正解'
   }
 }
+const { shift_enter, numpadEnter, r, j } = useMagicKeys()
+watch(j, (v, prev) => {
+  if (prev === true && v === false) {
+    judge()
+  }
+})
+watch(shift_enter, (v, prev) => {
+  if (prev === true && v === false) {
+    judge()
+  }
+})
+watch(numpadEnter, (v, prev) => {
+  if (prev === true && v === false) {
+    judge()
+  }
+})
+watch(r, (v, prev) => {
+  if (prev === true && v === false) {
+    generateQuestion()
+  }
+})
 
 const title = computed(() => {
   switch (nanimachiOption.type.value) {
@@ -69,22 +91,22 @@ const showAllCheckbox = computed(
         @click="showNanimachiOption"
         label="設定"
         size="small"
-        class="w-24"
+        class="w-28"
         icon="pi pi-cog"
         severity="info"
       />
       <Button
         @click="generateQuestion"
-        label="別の問題"
+        label="別の問題 [r]"
         size="small"
-        class="w-24"
+        class="w-28"
         icon="pi pi-refresh"
         severity="info"
       />
       <NanimachiOption @hide="handleHideOption" />
     </div>
     <div class="mt-6 flex-col text-center md:w-4/5">
-      <h3>選択欄</h3>
+      <h3>選択欄 [1-9]</h3>
       <NanimachiAnswerButton />
       <p
         class="mt-2"
@@ -117,8 +139,8 @@ const showAllCheckbox = computed(
     <div>
       <Button
         @click="judge"
-        label="判定"
-        class="w-24"
+        label="判定 [j]"
+        class="w-28"
         icon="pi pi-check"
       />
     </div>
