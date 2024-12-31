@@ -2,7 +2,7 @@
 import Button from 'primevue/button'
 import Message from 'primevue/message'
 
-import { computed, watchEffect } from 'vue'
+import { computed, watch, watchEffect } from 'vue'
 
 import NanikiruAnswerButton from '@/components/NanikiruAnswerButton.vue'
 import NanikiruExplanationDialog from '@/components/NanikiruExplanationDialog.vue'
@@ -13,6 +13,7 @@ import { showNanikiruExplanation, showNanikiruOption } from '@/composables/dialo
 import { hand, generateHand } from '@/composables/nanikiruHand'
 import NanikiruOptionDialog from '@/components/NanikiruOptionDialog.vue'
 import { isChanged, save } from '@/composables/nanikiruOption'
+import { useMagicKeys } from '@vueuse/core'
 
 const analysisResult = computed(() => hand.value.getAnalysisResult14())
 
@@ -40,6 +41,22 @@ watchEffect(() => {
   }
   judge(analysisResult.value, tsumo as 牌, answer.value)
 })
+
+const { r, e } = useMagicKeys()
+
+watch(r, (v, prev) => {
+  if (prev === true && v === false) {
+    generateQuestion()
+  }
+})
+watch([answer, e], ([a, e], [pa, pe]) => {
+  if (a === null) {
+    return
+  }
+  if (!e && pe) {
+    showNanikiruExplanation()
+  }
+})
 </script>
 
 <template>
@@ -50,22 +67,22 @@ watchEffect(() => {
         @click="showNanikiruOption"
         label="設定"
         size="small"
-        class="w-24"
+        class="w-28"
         icon="pi pi-cog"
         severity="info"
       />
       <Button
         @click="generateQuestion"
-        label="別の問題"
+        label="別の問題 [r]"
         size="small"
-        class="w-24"
+        class="w-28"
         icon="pi pi-refresh"
         severity="info"
       />
       <NanikiruOptionDialog @hide="handleHideOption" />
     </div>
     <div class="mt-6 flex-col items-center gap-4 text-center md:w-4/5">
-      <h3>選択欄</h3>
+      <h3>選択欄 [1-9]</h3>
 
       <NanikiruAnswerButton
         :hand="hand as 手牌"
@@ -99,7 +116,7 @@ watchEffect(() => {
     <div v-if="judgeResult !== null">
       <Button
         size="small"
-        label="解説を見る"
+        label="解説を見る [e]"
         icon="pi pi-book"
         @click="showNanikiruExplanation"
       />
