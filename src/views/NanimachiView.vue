@@ -35,7 +35,7 @@ const judge = () => {
     result.value = '不正解'
   }
 }
-const { shift_enter, numpadEnter, r, j } = useMagicKeys()
+const { shift_enter, numpadEnter, r, j, e } = useMagicKeys()
 watch(j, (v, prev) => {
   if (prev === true && v === false) {
     judge()
@@ -54,6 +54,14 @@ watch(numpadEnter, (v, prev) => {
 watch(r, (v, prev) => {
   if (prev === true && v === false) {
     generateQuestion()
+  }
+})
+watch([result, e], ([r, e], [pr, pe]) => {
+  if (r === null) {
+    return
+  }
+  if (!e && pe) {
+    showNanimachiExplanation()
   }
 })
 
@@ -163,7 +171,7 @@ const showAllCheckbox = computed(
     <div v-if="result !== null">
       <Button
         size="small"
-        label="解説を見る"
+        label="解説を見る [e]"
         icon="pi pi-book"
         @click="showNanimachiExplanation"
       />
