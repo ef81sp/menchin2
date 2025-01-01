@@ -55,7 +55,7 @@ const setAnswer = (num: number | 'tsumo') => {
     return
   }
   // 数字がhandにない場合は何もしない
-  if (paiList.value.findIndex((p) => p.number === num) === -1) {
+  if (props.hand.牌List().findIndex((p) => p.number === num) === -1) {
     return
   }
   ;[answer.value, selected.value] = getPaiStr(num)
