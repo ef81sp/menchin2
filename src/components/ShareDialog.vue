@@ -35,7 +35,7 @@ const shareOnXUrl = computed(
 )
 const shareOnBlueskyUrl = computed(
   () =>
-    `https://bsky.app/intent/compose?text=${encodeURIComponent(props.shareText.replaceAll('\n', ' | '))}`,
+    `https://bsky.app/intent/compose?text=${encodeURIComponent(props.shareText.split('\n').join(' | '))}`,
 )
 
 const textareaId = useId()
