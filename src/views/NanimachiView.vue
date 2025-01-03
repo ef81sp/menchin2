@@ -18,14 +18,14 @@ const result = ref<string | null>(null)
 
 const handleHideOption = () => {
   if (nanimachiOption.isChanged.value) {
-    generateQuestion()
+    generateQuestion({ renew: true })
     nanimachiOption.save()
   }
 }
-const generateQuestion = () => {
+const generateQuestion = ({ renew } = { renew: false }) => {
   result.value = null
   clearAnswerNanimachi()
-  generateHand()
+  generateHand({ renew })
 }
 
 const judge = () => {
@@ -100,7 +100,7 @@ const showAllCheckbox = computed(
         severity="info"
       />
       <Button
-        @click="generateQuestion"
+        @click="() => generateQuestion()"
         :label="`別の問題 [${reloadKeyStr}]`"
         size="small"
         class="w-30"
