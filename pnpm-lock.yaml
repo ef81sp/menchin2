@@ -18,8 +18,8 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1
       primevue:
-        specifier: 3.46.0
-        version: 3.46.0(vue@3.5.13(typescript@5.4.5))
+        specifier: 3.53.1
+        version: 3.53.1(vue@3.5.13(typescript@5.4.5))
       vue:
         specifier: ^3.5.13
         version: 3.5.13(typescript@5.4.5)
@@ -995,6 +995,9 @@ packages:
   '@types/node@18.19.68':
     resolution: {integrity: sha512-QGtpFH1vB99ZmTa63K4/FU8twThj4fuVSBkGddTp7uIL/cuoLWIUSL2RcOaigBhfR+hg5pgGkBnkoOxrTVBMKw==}
 
+  '@types/node@18.19.69':
+    resolution: {integrity: sha512-ECPdY1nlaiO/Y6GUnwgtAAhLNaQ53AyIVz+eILxpEo5OvuqE6yWkqWBIb5dU0DqhKQtMeny+FBD3PK6lm7L5xQ==}
+
   '@types/resolve@1.17.1':
     resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
 
@@ -1545,8 +1548,8 @@ packages:
     resolution: {integrity: sha512-MZ4iQ6JwHOBQjahnjwaC1ZtIBH+2ohjamzAO3oaHcXYup7qxjF2fixyH+Q71voWHeOkI2q/TnJao/KfXYIZWbw==}
     engines: {node: '>= 0.4'}
 
-  es-set-tostringtag@2.0.3:
-    resolution: {integrity: sha512-3T8uNMC3OQTHkFUsFq8r/BwAXLHvU/9O9mE0fBc/MY5iq/8H7ncvO947LmYA6ldWw9Uh8Yhf25zu6n7nML5QWQ==}
+  es-set-tostringtag@2.1.0:
+    resolution: {integrity: sha512-j6vWzfrGVfyXxge+O0x5sh6cvxAog0a/4Rdd2K36zCMV5eJ+/+tOAngRO8cODMNWbVRdVlmGZQL2YS3yR8bIUA==}
     engines: {node: '>= 0.4'}
 
   es-to-primitive@1.3.0:
@@ -2293,8 +2296,8 @@ packages:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
     engines: {node: '>= 0.8.0'}
 
-  own-keys@1.0.0:
-    resolution: {integrity: sha512-HcuIjzpjrUbqZPGzWHVg95Bc2Y37KoY5n66QQyEGMzrIWVKHsgHcv8/Aq5Cu3qFUQJzMSPVP8MD3oaFoaME1lg==}
+  own-keys@1.0.1:
+    resolution: {integrity: sha512-qFOyK5PjiWZd+QQIh+1jhdb9LpxTF0qs7Pm8o5QHYZ0M3vKqSqzsZaEB6oWlxZ+q2sJBMI/Ktgd2N5ZwQoRHfg==}
     engines: {node: '>= 0.4'}
 
   p-limit@3.1.0:
@@ -2508,8 +2511,8 @@ packages:
   primeicons@6.0.1:
     resolution: {integrity: sha512-KDeO94CbWI4pKsPnYpA1FPjo79EsY9I+M8ywoPBSf9XMXoe/0crjbUK7jcQEDHuc0ZMRIZsxH3TYLv4TUtHmAA==}
 
-  primevue@3.46.0:
-    resolution: {integrity: sha512-WGprXj9HA+j6gLLDaSxcRRSChIF99ld5fg1D3hYFA7hNiEuON1aqe83gf52vUSw8yjVMtFQ3CMPQSTYhooNwIg==}
+  primevue@3.53.1:
+    resolution: {integrity: sha512-Bp4peZPdhfKYXwvtsOGGh5dfgmTelm+LZEZKGs/c5mOHhsUJ6xi3EcOZoQVI6oklS946ayMQvgD5L0S7itGO0g==}
     peerDependencies:
       vue: ^3.0.0
 
@@ -4174,9 +4177,13 @@ snapshots:
     dependencies:
       undici-types: 5.26.5
 
+  '@types/node@18.19.69':
+    dependencies:
+      undici-types: 5.26.5
+
   '@types/resolve@1.17.1':
     dependencies:
-      '@types/node': 18.19.68
+      '@types/node': 18.19.69
 
   '@types/semver@7.5.8': {}
 
@@ -4800,7 +4807,7 @@ snapshots:
       es-define-property: 1.0.1
       es-errors: 1.3.0
       es-object-atoms: 1.0.0
-      es-set-tostringtag: 2.0.3
+      es-set-tostringtag: 2.1.0
       es-to-primitive: 1.3.0
       function.prototype.name: 1.1.8
       get-intrinsic: 1.2.6
@@ -4824,7 +4831,7 @@ snapshots:
       object-inspect: 1.13.3
       object-keys: 1.1.1
       object.assign: 4.1.7
-      own-keys: 1.0.0
+      own-keys: 1.0.1
       regexp.prototype.flags: 1.5.3
       safe-array-concat: 1.1.3
       safe-push-apply: 1.0.0
@@ -4847,8 +4854,9 @@ snapshots:
     dependencies:
       es-errors: 1.3.0
 
-  es-set-tostringtag@2.0.3:
+  es-set-tostringtag@2.1.0:
     dependencies:
+      es-errors: 1.3.0
       get-intrinsic: 1.2.6
       has-tostringtag: 1.0.2
       hasown: 2.0.2
@@ -5393,7 +5401,7 @@ snapshots:
 
   jest-worker@26.6.2:
     dependencies:
-      '@types/node': 18.19.68
+      '@types/node': 18.19.69
       merge-stream: 2.0.0
       supports-color: 7.2.0
 
@@ -5652,7 +5660,7 @@ snapshots:
       type-check: 0.4.0
       word-wrap: 1.2.5
 
-  own-keys@1.0.0:
+  own-keys@1.0.1:
     dependencies:
       get-intrinsic: 1.2.6
       object-keys: 1.1.1
@@ -5784,7 +5792,7 @@ snapshots:
 
   primeicons@6.0.1: {}
 
-  primevue@3.46.0(vue@3.5.13(typescript@5.4.5)):
+  primevue@3.53.1(vue@3.5.13(typescript@5.4.5)):
     dependencies:
       vue: 3.5.13(typescript@5.4.5)
 
