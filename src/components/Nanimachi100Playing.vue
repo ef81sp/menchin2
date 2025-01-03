@@ -116,7 +116,10 @@ watch([j, numpadEnter], (keys, prevKeys) => {
       </div>
     </div>
 
-    <NanimachiQuestion :hand="hand.普通" />
+    <NanimachiQuestion
+      :hand="hand.普通"
+      class="w-full justify-center"
+    />
     <div class="mt-6 flex-col text-center md:w-4/5">
       <h3>選択欄 [1-9]</h3>
       <NanimachiAnswerButton />
