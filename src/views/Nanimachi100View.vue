@@ -37,13 +37,7 @@ const handleCorrect = () => {
 }
 
 const useTimer = () => {
-  const { timestamp, resume, pause } = useTimestamp({
-    controls: true,
-    interval: 25,
-  })
-  let startAt = timestamp.value
-  const pastTime = computed(() => timestamp.value - startAt)
-
+  const pastTime = ref(0)
   const pastTimeFormatted = computed(() => {
     const time = pastTime.value
     const min = Math.floor(time / 60000)
@@ -51,16 +45,34 @@ const useTimer = () => {
     return `${String(min).padStart(2, '0')}:${sec.toFixed(1).padStart(4, '0')}`
   })
 
+  let timer: number | null = null
+  let startAt: number | null = null
+
   const start = () => {
-    console.log('start')
-    startAt = timestamp.value
+    startAt = Date.now()
+    // @ts-ignore なんかNodeJS.Timeoutが推論されるが、BrowserのsetIntervalを使っている
+    timer = setInterval(() => {
+      if (startAt !== null) {
+        pastTime.value = Date.now() - startAt
+      }
+    }, 100)
   }
+
+  const pause = () => {
+    if (timer !== null) {
+      clearInterval(timer)
+      timer = null
+    }
+  }
+
   const finish = () => {
     pause()
   }
+
   return { pastTime, pastTimeFormatted, start, pause, finish }
 }
-const { start, pastTimeFormatted, finish } = useTimer()
+
+const { pastTimeFormatted, start, finish } = useTimer()
 </script>
 <template>
   <div class="flex flex-col items-center gap-y-4">
