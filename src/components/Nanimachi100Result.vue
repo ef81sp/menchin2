@@ -14,6 +14,8 @@ const { time, nowQuestion, qAmount, type, length } = defineProps<{
   length: number
 }>()
 
+defineEmits(['retry'])
+
 const shareDialog = useTemplateRef('shareDialog')
 
 const result = computed(() => [
@@ -81,6 +83,13 @@ const handleShare = async () => {
       @click="handleShare"
       label="結果をシェア"
       icon="pi pi-share-alt"
+      class="w-40"
+    />
+    <Button
+      @click="$emit('retry')"
+      severity="info"
+      label="もう一度"
+      icon="pi pi-refresh"
       class="w-40"
     />
   </div>

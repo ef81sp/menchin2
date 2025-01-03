@@ -5,7 +5,6 @@ import Nanimachi100Start from '@/components/Nanimachi100Start.vue'
 import Nanimachi100CountDown from '@/components/Nanimachi100CountDown.vue'
 import Nanimachi100Playing from '@/components/Nanimachi100Playing.vue'
 
-import { useTimestamp } from '@vueuse/core'
 import Nanimachi100Result from '@/components/Nanimachi100Result.vue'
 
 const qAmount = ref(100)
@@ -15,6 +14,9 @@ const showTime = ref(true)
 
 const scene = ref<'start' | 'countdown' | 'playing' | 'result'>('start')
 
+const toStart = () => {
+  scene.value = 'start'
+}
 const toPlaying = () => {
   scene.value = 'playing'
 }
@@ -109,6 +111,7 @@ const { pastTimeFormatted, start, finish } = useTimer()
       :showTime="showTime"
       :type="type"
       :length="length"
+      @retry="toStart"
     />
   </div>
 </template>
