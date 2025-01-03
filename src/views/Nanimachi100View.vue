@@ -96,6 +96,7 @@ const { start, pastTimeFormatted, finish } = useTimer()
       :time="pastTimeFormatted"
       :showTime="showTime"
       :type="type"
+      :length="length"
     />
   </div>
 </template>

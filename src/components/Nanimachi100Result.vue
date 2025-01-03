@@ -5,12 +5,13 @@ import Button from 'primevue/button'
 import { computed, useTemplateRef } from 'vue'
 import ShareDialog from '@/components/ShareDialog.vue'
 
-const { time, nowQuestion, qAmount, type } = defineProps<{
+const { time, nowQuestion, qAmount, type, length } = defineProps<{
   qAmount: number
   nowQuestion: number
   time: string
   showTime: boolean
   type: Type
+  length: number
 }>()
 
 const shareDialog = useTemplateRef('shareDialog')
@@ -19,15 +20,17 @@ const result = computed(() => [
   { title: 'タイム', content: time },
   { title: '回答数', content: `${nowQuestion} / ${qAmount}` },
   { title: '問題モード', content: type === 'tamenmachi' ? '多面待ち' : '通常' },
+  { title: '手牌枚数', content: length },
 ])
 
 const isDone = computed(() => qAmount === nowQuestion)
 
 const text = computed(
-  () => `#何待ち${qAmount}本ノック を${isDone.value ? '完遂！' : 'リタイア……'}
+  () => `チンイツ #何待ち100本ノック を${isDone.value ? '完遂！' : 'リタイア……'}
 タイム: ${time}
 回答数: ${nowQuestion} / ${qAmount}
-問題モード: ${type === 'tamenmachi' ? '多面待ち' : '通常'}`,
+問題モード: ${type === 'tamenmachi' ? '多面待ち' : '通常'}
+手牌枚数: ${length}`,
 )
 const url = 'https://menchin.p_craft.dev/nanimachi100'
 const shareText = computed(
