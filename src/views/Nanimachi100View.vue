@@ -22,6 +22,7 @@ const toPlaying = () => {
 }
 
 const toCountdown = () => {
+  nowQuestion.value = 1
   scene.value = 'countdown'
 }
 
