@@ -44,7 +44,7 @@ const handleShare = async () => {
   if (isSP) {
     await navigator.share({
       title: '何待ち100本ノック',
-      text: shareText.value,
+      text: text.value,
       url,
     })
     return
