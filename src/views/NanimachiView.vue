@@ -2,7 +2,6 @@
 import Button from 'primevue/button'
 import Message from 'primevue/message'
 import Checkbox from 'primevue/checkbox'
-import VPai from '@/components/VPai.vue'
 import { hand, generateHand } from '@/composables/nanimachiHand'
 import * as nanimachiOption from '@/composables/nanimachiOption'
 import { showNanimachiExplanation, showNanimachiOption } from '@/composables/dialogController'
@@ -13,19 +12,20 @@ import { computed, ref, watch } from 'vue'
 import NanimachiExplanationDialog from '@/components/NanimachiExplanationDialog.vue'
 import { useMagicKeys } from '@vueuse/core'
 import { reloadKeyStr, explainKeyStr, judgeKeyStr } from '@/composables/shortcutKey'
+import NanimachiQuestion from '../components/NanimachiQuestion.vue'
 
 const result = ref<string | null>(null)
 
 const handleHideOption = () => {
   if (nanimachiOption.isChanged.value) {
-    generateQuestion()
+    generateQuestion({ renew: true })
     nanimachiOption.save()
   }
 }
-const generateQuestion = () => {
+const generateQuestion = ({ renew } = { renew: false }) => {
   result.value = null
   clearAnswerNanimachi()
-  generateHand()
+  generateHand({ renew })
 }
 
 const judge = () => {
@@ -82,14 +82,7 @@ const showAllCheckbox = computed(
 <template>
   <div class="*:mx-auto *:flex *:justify-center">
     <h2 class="m-3 text-center text-2xl">{{ title }}</h2>
-    <div class="my-4 *:w-[calc(100%/14)]">
-      <VPai
-        :pai-str="pai.toString()"
-        v-for="(pai, i) in hand.普通"
-        :key="i"
-        class="sm:w-10 md:w-12 lg:w-14"
-      />
-    </div>
+    <NanimachiQuestion :hand="hand.普通" />
     <div class="my-2 gap-2">
       <Button
         @click="showNanimachiOption"
@@ -100,7 +93,7 @@ const showAllCheckbox = computed(
         severity="info"
       />
       <Button
-        @click="generateQuestion"
+        @click="() => generateQuestion()"
         :label="`別の問題 [${reloadKeyStr}]`"
         size="small"
         class="w-30"

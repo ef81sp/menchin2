@@ -1,5 +1,5 @@
 import { 手牌, 牌 } from 'pairi'
-import { computed, ref } from 'vue'
+import { computed, ref, type Ref } from 'vue'
 import * as option from './nanimachiOption'
 import { generateRandomMountain } from '../utils/generateHandUtils'
 import type { AnalysisResult13, StrPai } from '@/utils/type'
@@ -23,7 +23,7 @@ export const hand = ref<手牌>(
     new 牌('9s'),
     new 牌('9s'),
   ]),
-)
+) as Ref<手牌>
 
 type Use4 = { pai: StrPai; count: number }[] | null
 export const use4 = computed<Use4>(() => {
@@ -70,15 +70,23 @@ type GenerateHandArg = {
   suit?: option.Suit
   range?: option.Range
   type?: option.Type
+  renew?: boolean
 }
+let reservedTehai: 手牌 | null = null
 export const generateHand = ({
   length = option.length.value,
   suit = option.suit.value,
   range = option.range.value,
   type = option.type.value,
+  renew = false,
 }: GenerateHandArg = {}) => {
-  const tehai = generateTehai(suit, range, length, generateType(type))
-
+  const tehai = renew
+    ? generateTehai(suit, range, length, generateType(type))
+    : (reservedTehai ?? generateTehai(suit, range, length, generateType(type)))
+  // 生成は非同期で行う
+  setTimeout(() => {
+    reservedTehai = generateTehai(suit, range, length, generateType(type))
+  })
   hand.value = tehai
   return tehai
 }

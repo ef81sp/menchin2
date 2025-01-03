@@ -7,7 +7,7 @@
   <h3>特徴</h3>
   <h4>ふたつのモード</h4>
   <ul>
-    <li><span class="font-semibold">何待ち</span>: 待ち牌を当てます。</li>
+    <li><span class="font-semibold">何待ち</span>: 待ち牌を当てます。100問もしくは10問の回答時間を計るモードもあります。</li>
     <li>
       <span class="font-semibold">何切る</span>:
       1枚ツモった状態から、最も有効牌の多い打牌を当てます。

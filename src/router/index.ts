@@ -25,6 +25,11 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('@/views/HelpView.vue'),
     },
+    {
+      path: '/nanimachi100',
+      name: 'nanimachi100',
+      component: () => import('@/views/Nanimachi100View.vue'),
+    },
   ],
 })
 
