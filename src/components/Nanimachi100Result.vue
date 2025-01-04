@@ -65,8 +65,6 @@ const handleShare = async () => {
     </Card>
     <ShareDialog
       ref="shareDialog"
-      :text
-      :url
       :shareText
     />
     <Button

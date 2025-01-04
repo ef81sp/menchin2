@@ -4,8 +4,6 @@ import { ref, computed, useId } from 'vue'
 import { useClipboard } from '@vueuse/core'
 
 const props = defineProps<{
-  text: string
-  url: string
   shareText: string
 }>()
 
@@ -33,7 +31,7 @@ const isSP = navigator.userAgent.match(/(iPhone|iPad|iPod|Android)/)
 
 const shareOnXUrl = computed(
   () =>
-    `https://x.com/intent/tweet?text=${encodeURIComponent(props.text)}&url=${encodeURIComponent(props.url)}`,
+    `https://x.com/intent/tweet?text=${encodeURIComponent(props.shareText)}`,
 )
 const shareOnBlueskyUrl = computed(
   () =>
