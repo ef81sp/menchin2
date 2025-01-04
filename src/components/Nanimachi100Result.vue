@@ -59,7 +59,7 @@ const handleShare = async () => {
     <Card class="w-[75%]">
       <template #title> {{ qAmount === nowQuestion ? '完遂！！' : 'リタイア……' }} </template>
       <template #content>
-        <div class="m-4 mx-auto grid grid-cols-1 gap-4 *:text-sm sm:grid-cols-2 md:grid-cols-3">
+        <div class="m-4 mx-auto grid grid-cols-2 gap-4 *:text-sm sm:grid-cols-2 md:grid-cols-3">
           <div
             class="flex flex-col gap-2 *:flex *:items-center *:justify-center *:gap-2"
             v-for="({ title, content }, i) in result"

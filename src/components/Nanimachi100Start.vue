@@ -16,10 +16,10 @@ defineEmits(['start'])
 
 <template>
   <div class="flex flex-col items-center gap-4">
-    <Card class="w-[75%]">
+    <Card class="w-[90%] md:w-[75%]">
       <template #title> 設定 </template>
       <template #content>
-        <div class="m-4 mx-auto grid grid-cols-1 gap-4 *:text-sm sm:grid-cols-2 md:grid-cols-3">
+        <div class="m-4 mx-auto grid gap-4 *:text-sm grid-cols-2 md:grid-cols-3">
           <div class="flex flex-col gap-2 *:flex *:items-center *:justify-start *:gap-2">
             <p class="font-bold">問題数</p>
             <div>
