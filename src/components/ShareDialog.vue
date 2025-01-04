@@ -29,13 +29,15 @@ const handleCopy = () => {
   copy(props.shareText)
   alert('コピーしました')
 }
+const isSP = navigator.userAgent.match(/(iPhone|iPad|iPod|Android)/)
 
 const shareOnXUrl = computed(
-  () => `https://twitter.com/intent/tweet?text=${encodeURIComponent(props.text)}&url=${props.url}`,
+  () =>
+    `https://x.com/intent/tweet?text=${encodeURIComponent(props.text)}&url=${encodeURIComponent(props.url)}`,
 )
 const shareOnBlueskyUrl = computed(
   () =>
-    `https://bsky.app/intent/compose?text=${encodeURIComponent(props.shareText.split('\n').join(' | '))}`,
+    `${isSP ?  'bluesky://' : 'https://bsky.app/' }intent/compose?text=${encodeURIComponent(props.shareText.split('\n').join(' | '))}`,
 )
 
 const textareaId = useId()

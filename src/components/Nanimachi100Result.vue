@@ -34,24 +34,13 @@ const text = computed(
 問題モード: ${type === 'tamenmachi' ? '多面待ち' : '通常'}
 手牌枚数: ${length}`,
 )
-const url = encodeURIComponent('https://menchin.p_craft.dev/nanimachi100')
+const url = 'https://menchin.p_craft.dev/nanimachi100'
 const shareText = computed(
   () => `${text.value}
 ${url}`,
 )
 const handleShare = async () => {
-  const isSP = navigator.userAgent.match(/(iPhone|iPad|iPod|Android)/)
-  const shareData = {
-    title: '何待ち100本ノック',
-    text: text.value,
-    url
-  }
-  if (isSP && navigator.canShare(shareData)) {
-    await navigator.share(shareData)
-    return
-  } else {
-    shareDialog.value?.open()
-  }
+  shareDialog.value?.open()
 }
 </script>
 
