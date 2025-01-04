@@ -26,8 +26,8 @@ export const hand = ref<手牌>(
 ) as Ref<手牌>
 
 type Use4 = { pai: StrPai; count: number }[] | null
-export const use4 = computed<Use4>(() => {
-  const handStr = hand.value.普通.map((p) => p.toString())
+const generateUse4 = (hand: 手牌): Use4 => {
+  const handStr = hand.普通.map((p) => p.toString())
   const count = new Map<StrPai, number>()
   for (const p of handStr) {
     count.set(p, (count.get(p) ?? 0) + 1)
@@ -44,14 +44,12 @@ export const use4 = computed<Use4>(() => {
   }
   // 残りを配列に変換
   return Array.from(count).map(([pai, count]) => ({ pai, count }))
+}
+export const use4 = computed<Use4>(() => {
+  return generateUse4(hand.value)
 })
 
-export const correctAnswerStrArr = computed<PaiStr[]>(() => {
-  const analysisResult = hand.value.getAnalysisResult13()
-  if (analysisResult === null) {
-    throw new Error('手牌がおかしい')
-  }
-
+export const generateCorrectAnswerStrArr = (analysisResult: AnalysisResult13):PaiStr[] => {
   const yuukoStrArr = analysisResult.有効牌.map((p) => p.toString())
 
   // 5枚目を除外しない設定の場合、もしくは4枚使いがない場合はそのまま返す
@@ -62,6 +60,14 @@ export const correctAnswerStrArr = computed<PaiStr[]>(() => {
   // use4の配列に含まれる牌をすべて除外
   const yuukoWithoutUse4 = yuukoStrArr.filter((p) => !use4.value!.some((u) => u.pai === p))
   return yuukoWithoutUse4
+}
+export const correctAnswerStrArr = computed<PaiStr[]>(() => {
+  const analysisResult = hand.value.getAnalysisResult13()
+  if (analysisResult === null) {
+    throw new Error('手牌がおかしい')
+  }
+
+  return generateCorrectAnswerStrArr(analysisResult)
 })
 export const correctAnswerStr = computed<string>(() => correctAnswerStrArr.value.join().trim())
 
@@ -70,6 +76,7 @@ type GenerateHandArg = {
   suit?: option.Suit
   range?: option.Range
   type?: option.Type
+  exclude5?: boolean
   renew?: boolean
 }
 let reservedTehai: 手牌 | null = null
@@ -78,14 +85,15 @@ export const generateHand = ({
   suit = option.suit.value,
   range = option.range.value,
   type = option.type.value,
+  exclude5 = option.exclude5.value,
   renew = false,
 }: GenerateHandArg = {}) => {
   const tehai = renew
-    ? generateTehai(suit, range, length, generateType(type))
-    : (reservedTehai ?? generateTehai(suit, range, length, generateType(type)))
+    ? generateTehai(suit, range, length, generateType(type), exclude5)
+    : (reservedTehai ?? generateTehai(suit, range, length, generateType(type), exclude5))
   // 生成は非同期で行う
   setTimeout(() => {
-    reservedTehai = generateTehai(suit, range, length, generateType(type))
+    reservedTehai = generateTehai(suit, range, length, generateType(type), exclude5)
   })
   hand.value = tehai
   return tehai
@@ -116,6 +124,7 @@ function generateTehai(
   range: option.Range,
   length: option.Length,
   type: Omit<option.Type, 'gochamaze'>,
+  exclude5: boolean,
 ): 手牌 {
   if (type === 'noten') {
     return generateTehaiForNoten(suit, range, length)
@@ -128,7 +137,7 @@ function generateTehai(
   if (type === 'tamenmachi') {
     // const tehai = tehaiPoolTamenmachi.value.pop() as 手牌 | undefined
     // return tehai ?? generateTehaiForTamenmachi(suit, range, length)
-    return generateTehaiForTamenmachi(suit, range, length)
+    return generateTehaiForTamenmachi(suit, range, length, exclude5)
   }
   throw new Error('typeがおかしい')
 }
@@ -172,6 +181,7 @@ const generateTehaiForTamenmachi = (
   suit: NonNullable<GenerateHandArg['suit']>,
   range: NonNullable<GenerateHandArg['range']>,
   length: NonNullable<GenerateHandArg['length']>,
+  exclude5: NonNullable<GenerateHandArg['exclude5']>,
 ): 手牌 => {
   // シャンテン数が0かつ有効牌が3種以上の手牌ができるまでgenerateHand13を繰り返す
   let tehai: 手牌
@@ -180,7 +190,18 @@ const generateTehaiForTamenmachi = (
     ;[tehai, analysisResult13] = generateHand13(suit, range, length)
 
     if (analysisResult13.シャンテン数 === 0 && analysisResult13.有効牌.length >= 3) {
-      break
+      if (!exclude5) {
+        break
+      }
+      const use4 = generateUse4(tehai)
+      const yuukoStrArr = analysisResult13.有効牌.map((p) => p.toString())
+      const yuukoWithoutUse4 = use4 
+        ? yuukoStrArr.filter((p) => !use4.some((u) => u.pai === p))
+        : yuukoStrArr
+    
+      if (yuukoWithoutUse4.length >= 3) {
+        break
+      }
     }
     // eslint-disable-next-line no-constant-condition
   } while (true)

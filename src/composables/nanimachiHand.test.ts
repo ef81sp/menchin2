@@ -1,5 +1,6 @@
-import { generateHand } from './nanimachiHand'
-import { describe, expect, it } from 'vitest'
+import { nextTick } from 'vue'
+import { correctAnswerStrArr, generateCorrectAnswerStrArr, generateHand } from './nanimachiHand'
+import { describe, expect, it, type TestFunction } from 'vitest'
 
 describe('generateHand', () => {
   describe('type', () => {
@@ -136,4 +137,68 @@ describe('generateHand', () => {
       })
     })
   })
+  describe.concurrent(
+    '多面待ちで5枚目除外のときに4枚使いがあってもちゃんと3種類以上待ちがある',
+    () => {
+      const testFn: TestFunction = async ({ expect }) => {
+        const hand = generateHand({
+          type: 'tamenmachi',
+          exclude5: true,
+          renew: true,
+        })
+        const yuuko = generateCorrectAnswerStrArr(hand.getAnalysisResult13()!)
+        expect(yuuko.length).toBeGreaterThanOrEqual(3)
+      }
+      it('001', testFn)
+      it('002', testFn)
+      it('003', testFn)
+      it('004', testFn)
+      it('005', testFn)
+      it('006', testFn)
+      it('007', testFn)
+      it('008', testFn)
+      it('009', testFn)
+      it('010', testFn)
+      it('011', testFn)
+      it('012', testFn)
+      it('013', testFn)
+      it('014', testFn)
+      it('015', testFn)
+      it('016', testFn)
+      it('017', testFn)
+      it('018', testFn)
+      it('019', testFn)
+      it('020', testFn)
+      it('021', testFn)
+      it('022', testFn)
+      it('023', testFn)
+      it('024', testFn)
+      it('025', testFn)
+      it('026', testFn)
+      it('027', testFn)
+      it('028', testFn)
+      it('029', testFn)
+      it('030', testFn)
+      it('031', testFn)
+      it('032', testFn)
+      it('033', testFn)
+      it('034', testFn)
+      it('035', testFn)
+      it('036', testFn)
+      it('037', testFn)
+      it('038', testFn)
+      it('039', testFn)
+      it('040', testFn)
+      it('041', testFn)
+      it('042', testFn)
+      it('043', testFn)
+      it('044', testFn)
+      it('045', testFn)
+      it('046', testFn)
+      it('047', testFn)
+      it('048', testFn)
+      it('049', testFn)
+      it('050', testFn)
+    },
+  )
 })
