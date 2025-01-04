@@ -34,7 +34,7 @@ const text = computed(
 問題モード: ${type === 'tamenmachi' ? '多面待ち' : '通常'}
 手牌枚数: ${length}`,
 )
-const url = 'https://menchin.p_craft.dev/nanimachi100'
+const url = 'https://menchin.p_craft.dev/'
 const shareText = computed(
   () => `${text.value}
 ${url}`,
