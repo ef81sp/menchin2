@@ -43,8 +43,8 @@ const handleShare = async () => {
   const isSP = navigator.userAgent.match(/(iPhone|iPad|iPod|Android)/)
   const shareData = {
     title: '何待ち100本ノック',
-    text: shareText.value,
-    url,
+    text: text.value,
+    url
   }
   if (isSP && navigator.canShare(shareData)) {
     await navigator.share(shareData)
