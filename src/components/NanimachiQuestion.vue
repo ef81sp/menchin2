@@ -6,7 +6,7 @@ defineProps<{ hand: 手牌['普通'] }>()
 </script>
 
 <template>
-  <div class="flex my-4 *:w-[calc(100%/14)]">
+  <div class="my-4 flex *:w-[calc(100%/14)]">
     <VPai
       :pai-str="pai.toString()"
       v-for="(pai, i) in hand"

@@ -9,7 +9,7 @@ defineProps<{
 <template>
   <div class="flex items-center gap-x-2 lg:gap-x-4">
     <p class="flex min-w-fit items-center text-sm md:text-base lg:text-lg">{{ title }}</p>
-    <div class="flex flex-wrap">
+    <div class="scrollbar-thin flex overflow-x-scroll">
       <VPai
         v-for="(p, i) in paiList"
         :pai-str="p"

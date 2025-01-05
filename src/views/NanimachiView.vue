@@ -2,7 +2,7 @@
 import Button from 'primevue/button'
 import Message from 'primevue/message'
 import Checkbox from 'primevue/checkbox'
-import { hand, generateHand } from '@/composables/nanimachiHand'
+import { hand, generateHand, correctAnswerStrArr } from '@/composables/nanimachiHand'
 import * as nanimachiOption from '@/composables/nanimachiOption'
 import { showNanimachiExplanation, showNanimachiOption } from '@/composables/dialogController'
 import NanimachiOption from '@/components/NanimachiOptionDialog.vue'
@@ -164,7 +164,11 @@ const showAllCheckbox = computed(
         icon="pi pi-book"
         @click="showNanimachiExplanation"
       />
-      <NanimachiExplanationDialog :analysis-result="hand.getAnalysisResult13()!" />
+      <NanimachiExplanationDialog
+        :hand="hand.普通.map((p) => p.toString())"
+        :correctAnswer="correctAnswerStrArr"
+        :analysis-result="hand.getAnalysisResult13()!"
+      />
     </div>
   </div>
 </template>
