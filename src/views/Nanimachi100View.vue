@@ -27,6 +27,10 @@ const toPlaying = () => {
   scene.value = 'playing'
 }
 
+const handleStart = () => {
+  questionList.value = []
+  toCountdown()
+}
 const toCountdown = () => {
   nowQuestion.value = 1
   scene.value = 'countdown'
@@ -107,7 +111,7 @@ const handleCorrect = (hand: 手牌, answer: PaiStr[]) => {
       v-model:type="type"
       v-model:exclude5="exclude5"
       v-model:showTime="showTime"
-      @start="toCountdown"
+      @start="handleStart"
     />
     <Nanimachi100CountDown
       v-else-if="scene === 'countdown'"
