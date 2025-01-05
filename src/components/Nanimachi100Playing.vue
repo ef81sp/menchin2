@@ -6,9 +6,11 @@ import NanimachiQuestion from '@/components/NanimachiQuestion.vue'
 import NanimachiAnswerButton from '@/components/NanimachiAnswerButton.vue'
 import { onMounted, ref, watch, nextTick } from 'vue'
 import { clearAnswerNanimachi, judgeNanimachi } from '@/composables/nanimachiAnswer'
-import { hand, generateHand } from '@/composables/nanimachiHand'
+import { hand, generateHand, correctAnswerStrArr } from '@/composables/nanimachiHand'
 import { judgeKeyStr } from '@/composables/shortcutKey'
 import { useMagicKeys } from '@vueuse/core'
+import type { 手牌 } from 'pairi'
+import type { PaiStr } from '@/composables/PaiStr.type'
 
 const { pastTime } = defineProps<{
   nowQuestion: number
@@ -17,7 +19,11 @@ const { pastTime } = defineProps<{
   pastTime: string
 }>()
 
-const emit = defineEmits(['mounted', 'correct', 'retire'])
+const emit = defineEmits<{
+  mounted: []
+  correct: [hand: 手牌, answer: PaiStr[]]
+  retire: []
+}>()
 
 onMounted(() => {
   generateHand({ renew: true })
@@ -42,8 +48,8 @@ const judge = () => {
     const j = judgeNanimachi()
     if (j.result === 'correct') {
       result.value = '正解'
+      emit('correct', hand.value, correctAnswerStrArr.value)
       generateQuestion()
-      emit('correct')
     } else {
       result.value = '不正解'
     }

@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import { exclude5, length, suit, type } from '@/composables/nanimachiOption'
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref, type Ref } from 'vue'
 import Nanimachi100Start from '@/components/Nanimachi100Start.vue'
 import Nanimachi100CountDown from '@/components/Nanimachi100CountDown.vue'
 import Nanimachi100Playing from '@/components/Nanimachi100Playing.vue'
 
 import Nanimachi100Result from '@/components/Nanimachi100Result.vue'
+import type { 手牌 } from 'pairi'
+import type { PaiStr } from '@/composables/PaiStr.type'
+import { generateCorrectAnswerStrArr, generateHand } from '@/composables/nanimachiHand'
+import Nanimachi100ResultFurikaeri, {
+  type Nanimachi100ResultFurikaeriProps,
+} from '@/components/Nanimachi100ResultFurikaeri.vue'
 
 const qAmount = ref(100)
 const nowQuestion = ref(1)
@@ -29,14 +35,6 @@ const toCountdown = () => {
 const toResult = () => {
   finish()
   scene.value = 'result'
-}
-
-const handleCorrect = () => {
-  if (nowQuestion.value === qAmount.value) {
-    toResult()
-  } else {
-    nowQuestion.value++
-  }
 }
 
 const useTimer = () => {
@@ -74,8 +72,29 @@ const useTimer = () => {
 
   return { pastTime, pastTimeFormatted, start, pause, finish }
 }
+const { pastTime, pastTimeFormatted, start, finish } = useTimer()
 
-const { pastTimeFormatted, start, finish } = useTimer()
+// ===========================
+
+type questionList = Omit<Nanimachi100ResultFurikaeriProps, 'index'>[]
+const questionList = ref<questionList>([]) as Ref<questionList>
+
+let previousTimeMs = 0
+const handleCorrect = (hand: 手牌, answer: PaiStr[]) => {
+  const timeMs = pastTime.value - previousTimeMs
+  previousTimeMs = pastTime.value
+  questionList.value.push({
+    hand,
+    answer,
+    timeMs,
+  })
+
+  if (nowQuestion.value === qAmount.value) {
+    toResult()
+  } else {
+    nowQuestion.value++
+  }
+}
 </script>
 <template>
   <div class="flex flex-col items-center gap-y-4">
@@ -112,6 +131,7 @@ const { pastTimeFormatted, start, finish } = useTimer()
       :showTime="showTime"
       :type="type"
       :length="length"
+      :questionList="questionList"
       @retry="toStart"
     />
   </div>

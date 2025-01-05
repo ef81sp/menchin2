@@ -49,7 +49,7 @@ export const use4 = computed<Use4>(() => {
   return generateUse4(hand.value)
 })
 
-export const generateCorrectAnswerStrArr = (analysisResult: AnalysisResult13):PaiStr[] => {
+export const generateCorrectAnswerStrArr = (analysisResult: AnalysisResult13): PaiStr[] => {
   const yuukoStrArr = analysisResult.有効牌.map((p) => p.toString())
 
   // 5枚目を除外しない設定の場合、もしくは4枚使いがない場合はそのまま返す
@@ -195,10 +195,10 @@ const generateTehaiForTamenmachi = (
       }
       const use4 = generateUse4(tehai)
       const yuukoStrArr = analysisResult13.有効牌.map((p) => p.toString())
-      const yuukoWithoutUse4 = use4 
+      const yuukoWithoutUse4 = use4
         ? yuukoStrArr.filter((p) => !use4.some((u) => u.pai === p))
         : yuukoStrArr
-    
+
       if (yuukoWithoutUse4.length >= 3) {
         break
       }

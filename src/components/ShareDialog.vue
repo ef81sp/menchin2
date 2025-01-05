@@ -30,12 +30,11 @@ const handleCopy = () => {
 const isSP = navigator.userAgent.match(/(iPhone|iPad|iPod|Android)/)
 
 const shareOnXUrl = computed(
-  () =>
-    `https://x.com/intent/tweet?text=${encodeURIComponent(props.shareText)}`,
+  () => `https://x.com/intent/tweet?text=${encodeURIComponent(props.shareText)}`,
 )
 const shareOnBlueskyUrl = computed(
   () =>
-    `${isSP ?  'bluesky://' : 'https://bsky.app/' }intent/compose?text=${encodeURIComponent(props.shareText.split('\n').join(' | '))}`,
+    `${isSP ? 'bluesky://' : 'https://bsky.app/'}intent/compose?text=${encodeURIComponent(props.shareText.split('\n').join(' | '))}`,
 )
 
 const textareaId = useId()
