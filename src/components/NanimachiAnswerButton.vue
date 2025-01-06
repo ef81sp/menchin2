@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { suit, type Suit } from '@/composables/nanimachiOption'
 import SelectButton from 'primevue/selectbutton'
+import Button from 'primevue/button'
 import { computed, watch, type Ref } from 'vue'
 import VPai from './VPai.vue'
 import { answerNanimachi } from '@/composables/nanimachiAnswer'
 import { useMagicKeys } from '@vueuse/core'
+import { clearKeyStr } from '@/composables/shortcutKey'
 
 import type { Manzu, Pinzu, Sozu } from '@/composables/PaiStr.type'
 
@@ -54,10 +56,16 @@ const toggleSelect = (num: number, suit: Suit) => {
       throw new Error('invalid suit')
   }
 }
+
+const clearAnswers = () => {
+  answerNanimachi.value = []
+}
+
 // prettier-ignore
 const {
   digit1, digit2, digit3, digit4, digit5, digit6, digit7, digit8, digit9,
-  numpad1, numpad2, numpad3, numpad4, numpad5, numpad6, numpad7, numpad8, numpad9
+  numpad1, numpad2, numpad3, numpad4, numpad5, numpad6, numpad7, numpad8, numpad9,
+  c, numpadDecimal
 } = useMagicKeys()
 watch([digit1, numpad1], (keys) => {
   if (keys.includes(true)) toggleSelect(1, suit.value)
@@ -86,17 +94,29 @@ watch([digit8, numpad8], (keys) => {
 watch([digit9, numpad9], (keys) => {
   if (keys.includes(true)) toggleSelect(9, suit.value)
 })
+watch([c, numpadDecimal], (keys) => {
+  if (keys.includes(true)) clearAnswers()
+})
 </script>
 
 <template>
-  <SelectButton
-    v-model="answerNanimachi"
-    :options="options"
-    multiple
-    class="*:max-w-[calc(100%/9)] *:justify-center *:px-1 *:py-2 *:md:w-[calc(120%/9)] *:md:px-2 *:md:py-3"
-  >
-    <template #option="{ option }">
-      <VPai :pai-str="option" />
-    </template>
-  </SelectButton>
+  <div class="flex flex-col items-center gap-2">
+    <SelectButton
+      v-model="answerNanimachi"
+      :options="options"
+      multiple
+      class="*:max-w-[calc(100%/9)] *:justify-center *:px-1 *:py-2 *:md:w-[calc(120%/9)] *:md:px-2 *:md:py-3"
+    >
+      <template #option="{ option }">
+        <VPai :pai-str="option" />
+      </template>
+    </SelectButton>
+    <Button
+      :label="`選択欄をクリア [${clearKeyStr}]`"
+      size="small"
+      severity="secondary"
+      class="text-xs"
+      @click="clearAnswers"
+    />
+  </div>
 </template>

@@ -42,20 +42,30 @@ export const tsumoKeyStr = computed(() => {
       return null as never
   }
 })
+export const clearKeyStr = computed(() => {
+  switch (shortcutType.value) {
+    case 'normal':
+      return 'c'
+    case 'tenkey':
+      return '.'
+    default:
+      return null as never
+  }
+})
 
 // prettier-ignore
 const {
   digit1, digit2, digit3, digit4, digit5, digit6, digit7, digit8, digit9,
-  t, r, j, e,
+  t, r, j, e, c,
   numpad1, numpad2, numpad3, numpad4, numpad5, numpad6, numpad7, numpad8, numpad9,
-  numpadEnter, numpadAdd, numpadSubtract
+  numpadEnter, numpadAdd, numpadSubtract, numpadDecimal,
 } = useMagicKeys()
 
 // prettier-ignore
-watch([digit1, digit2, digit3, digit4, digit5, digit6, digit7, digit8, digit9, t, r, j, e], (keys) => {
+watch([digit1, digit2, digit3, digit4, digit5, digit6, digit7, digit8, digit9, t, r, j, e, c], (keys) => {
   if (keys.includes(true)) shortcutType.value = 'normal'
 })
 // prettier-ignore
-watch([numpad1, numpad2, numpad3, numpad4, numpad5, numpad6, numpad7, numpad8, numpad9, numpadEnter, numpadAdd, numpadSubtract], (keys) => {
+watch([numpad1, numpad2, numpad3, numpad4, numpad5, numpad6, numpad7, numpad8, numpad9, numpadEnter, numpadAdd, numpadSubtract, numpadDecimal], (keys) => {
   if (keys.includes(true)) shortcutType.value = 'tenkey'
 })

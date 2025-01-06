@@ -130,7 +130,7 @@ watch([j, numpadEnter], (keys, prevKeys) => {
       <h3>選択欄 [1-9]</h3>
       <NanimachiAnswerButton />
     </div>
-    <div>
+    <div class="mt-6">
       <Button
         @click="judge"
         :label="`判定 [${judgeKeyStr}]`"
