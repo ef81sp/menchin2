@@ -65,6 +65,14 @@
       </ul>
     </li>
     <li>
+      <span class="font-semibold"><kbd>c</kbd></span
+      >: 回答をクリア (Clear)
+      <ul>
+        <li>何待ちのみ</li>
+        <li>テンキーの . でもOK</li>
+      </ul>
+    </li>
+    <li>
       <span class="font-semibold"><kbd>j</kbd></span
       >: 判定 (Judge)
       <ul>
