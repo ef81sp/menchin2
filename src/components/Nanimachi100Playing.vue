@@ -21,7 +21,7 @@ const { pastTime } = defineProps<{
 
 const emit = defineEmits<{
   mounted: []
-  correct: [hand: 手牌, answer: PaiStr[]]
+  correct: [hand: 手牌, answer: PaiStr[], mistake: boolean]
   retire: []
 }>()
 
@@ -39,6 +39,7 @@ const generateQuestion = () => {
 
 const result = ref<string | null>(null)
 const showResult = ref(false)
+const mistake = ref(false)
 let timeoutId = 0
 const judge = () => {
   clearTimeout(timeoutId)
@@ -48,9 +49,11 @@ const judge = () => {
     const j = judgeNanimachi()
     if (j.result === 'correct') {
       result.value = '正解'
-      emit('correct', hand.value, correctAnswerStrArr.value)
+      emit('correct', hand.value, correctAnswerStrArr.value, mistake.value)
+      mistake.value = false
       generateQuestion()
     } else {
+      mistake.value = true
       result.value = '不正解'
     }
     showResult.value = true

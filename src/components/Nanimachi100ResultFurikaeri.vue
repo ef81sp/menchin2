@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Button from 'primevue/button'
+import Tag from 'primevue/tag'
 
 import type { PaiStr } from '@/composables/PaiStr.type'
 import type { 手牌 } from 'pairi'
@@ -12,8 +13,9 @@ export type Nanimachi100ResultFurikaeriProps = {
   answer: PaiStr[]
   index: number
   timeMs: number
+  mistake: boolean
 }
-const { hand: _hand, answer, index } = defineProps<Nanimachi100ResultFurikaeriProps>()
+const { hand: _hand, answer, index, mistake } = defineProps<Nanimachi100ResultFurikaeriProps>()
 defineEmits<{ 'show-explaination': [] }>()
 
 const hand = computed(() => _hand.牌List().map((p) => p.toString()))
@@ -21,9 +23,20 @@ const hand = computed(() => _hand.牌List().map((p) => p.toString()))
 
 <template>
   <li>
-    <div class="flex items-center gap-2 px-0 md:gap-8 md:px-4">
-      <div class="flex flex-col items-center">
-        <p class="text-sm md:text-base">Q{{ index + 1 }}</p>
+    <div
+      class="flex items-center gap-2 px-0 py-4 md:gap-8 md:px-4"
+      :class="mistake ? ['bg-red-50', 'border-red-600', 'border'] : []"
+    >
+      <div class="flex w-16 flex-col items-center md:w-20">
+        <p class="text-sm md:text-base">
+          Q{{ index + 1 }}
+          <span
+            v-if="mistake"
+            class="rounded border border-red-600 px-1 text-xs text-red-950"
+          >
+            誤
+          </span>
+        </p>
         <p class="text-sm md:text-base">{{ (timeMs / 1000).toFixed(1) }}秒</p>
         <Button
           size="small"
@@ -49,6 +62,6 @@ const hand = computed(() => _hand.牌List().map((p) => p.toString()))
         />
       </div>
     </div>
-    <hr class="my-4" />
+    <hr />
   </li>
 </template>
