@@ -112,10 +112,14 @@ watch([c, numpadDecimal], (keys) => {
       </template>
     </SelectButton>
     <Button
-      :label="`選択欄をクリア [${clearKeyStr}]`"
+      :label="`クリア [${clearKeyStr}]`"
       size="small"
       severity="secondary"
       class="text-xs"
+      :pt="{
+        root: '!py-1 md:!py-2',
+      }"
+      :pt-options="{ mergeProps: true, mergeSections: true }"
       @click="clearAnswers"
     />
   </div>
