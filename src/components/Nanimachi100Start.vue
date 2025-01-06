@@ -26,7 +26,7 @@ defineEmits(['start'])
               <RadioButton
                 v-model="qAmount"
                 inputId="q-10"
-                name="10"
+                name="qAmount"
                 :value="10"
               />
               <label for="q-10">10</label>
@@ -35,7 +35,7 @@ defineEmits(['start'])
               <RadioButton
                 v-model="qAmount"
                 inputId="q-100"
-                name="100"
+                name="qAmount"
                 :value="100"
               />
               <label for="q-100">100</label>
@@ -48,7 +48,7 @@ defineEmits(['start'])
               <RadioButton
                 v-model="length"
                 inputId="length-7"
-                name="7"
+                name="length"
                 :value="7"
               />
               <label for="length-7">7</label>
@@ -57,7 +57,7 @@ defineEmits(['start'])
               <RadioButton
                 v-model="length"
                 inputId="length-10"
-                name="10"
+                name="length"
                 :value="10"
               />
               <label for="length-10">10</label>
@@ -66,7 +66,7 @@ defineEmits(['start'])
               <RadioButton
                 v-model="length"
                 inputId="length-13"
-                name="13"
+                name="length"
                 :value="13"
               />
               <label for="length-13">13</label>
@@ -79,7 +79,7 @@ defineEmits(['start'])
               <RadioButton
                 v-model="suit"
                 inputId="suit-m"
-                name="m"
+                name="suit"
                 value="m"
               />
               <label for="suit-m">マンズ</label>
@@ -88,7 +88,7 @@ defineEmits(['start'])
               <RadioButton
                 v-model="suit"
                 inputId="suit-p"
-                name="p"
+                name="suit"
                 value="p"
               />
               <label for="suit-p">ピンズ</label>
@@ -97,7 +97,7 @@ defineEmits(['start'])
               <RadioButton
                 v-model="suit"
                 inputId="suit-s"
-                name="s"
+                name="suit"
                 value="s"
               />
               <label for="suit-s">ソーズ</label>
@@ -110,7 +110,7 @@ defineEmits(['start'])
               <RadioButton
                 v-model="type"
                 inputId="type-tempai"
-                name="tempai"
+                name="type"
                 :value="'tempai'"
               />
               <label for="type-tempai">テンパイ<small>(1種以上)</small></label>
@@ -119,7 +119,7 @@ defineEmits(['start'])
               <RadioButton
                 v-model="type"
                 inputId="type-tamenmachi"
-                name="tamenmachi"
+                name="type"
                 :value="'tamenmachi'"
               />
               <label for="type-tamenmachi">多面待ち<small>(3種以上)</small></label>
