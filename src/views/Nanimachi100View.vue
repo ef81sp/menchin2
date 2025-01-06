@@ -6,12 +6,9 @@ import Nanimachi100CountDown from '@/components/Nanimachi100CountDown.vue'
 import Nanimachi100Playing from '@/components/Nanimachi100Playing.vue'
 
 import Nanimachi100Result from '@/components/Nanimachi100Result.vue'
-import type { 手牌 } from 'pairi'
+import { 手牌 } from 'pairi'
 import type { PaiStr } from '@/composables/PaiStr.type'
-import { generateCorrectAnswerStrArr, generateHand } from '@/composables/nanimachiHand'
-import Nanimachi100ResultFurikaeri, {
-  type Nanimachi100ResultFurikaeriProps,
-} from '@/components/Nanimachi100ResultFurikaeri.vue'
+import { type Nanimachi100ResultFurikaeriProps } from '@/components/Nanimachi100ResultFurikaeri.vue'
 
 const qAmount = ref(100)
 const nowQuestion = ref(1)
@@ -84,13 +81,14 @@ type questionList = Omit<Nanimachi100ResultFurikaeriProps, 'index'>[]
 const questionList = ref<questionList>([]) as Ref<questionList>
 
 let previousTimeMs = 0
-const handleCorrect = (hand: 手牌, answer: PaiStr[]) => {
+const handleCorrect = (hand: 手牌, answer: PaiStr[], mistake: boolean) => {
   const timeMs = pastTime.value - previousTimeMs
   previousTimeMs = pastTime.value
   questionList.value.push({
     hand,
     answer,
     timeMs,
+    mistake,
   })
 
   if (nowQuestion.value === qAmount.value) {

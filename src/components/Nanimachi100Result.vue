@@ -112,11 +112,12 @@ const showExplanation = async (index: number) => {
         />
         <ol>
           <Nanimachi100ResultFurikaeri
-            v-for="({ hand, answer, timeMs: time }, i) in questionList"
+            v-for="({ hand, answer, timeMs: time, mistake }, i) in questionList"
             :key="i"
             :hand="hand"
             :answer="answer"
             :timeMs="time"
+            :mistake="mistake"
             :index="i"
             @show-explaination="() => showExplanation(i)"
           />
